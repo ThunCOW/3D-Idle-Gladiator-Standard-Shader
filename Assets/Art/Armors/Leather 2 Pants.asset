@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b31534ba73255f46a92ee8777d16a95, type: 3}
+  m_Name: Leather 2 Pants
+  m_EditorClassIdentifier: 
+  Name: 
+  ItemWeight: 0
+  Type: 4
+  ModelPrefab: {fileID: 598628949826766418, guid: 1fcd5f80263fbc44ab086b5a2356d8b1,
+    type: 3}
+  ModelSprite: {fileID: 0}
+  Armour: 10
+  ArmorAudioConfigSO: {fileID: 0}

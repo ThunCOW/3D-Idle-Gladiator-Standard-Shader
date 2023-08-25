@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6870190f2f069ef4381f72dac676a9b4, type: 3}
+  m_Name: Sword Audio Config
+  m_EditorClassIdentifier: 
+  volume: 0.704
+  WeaponHitAudioVariations:
+  - {fileID: 8300000, guid: 885b4501d9fb6374985f08a35664a665, type: 3}
+  - {fileID: 8300000, guid: ef49cf5733bfd1348a3f798d962df6fc, type: 3}
+  WeaponMissAudioVariations: []
+  WeaponBlockAudioVariations:
+  - {fileID: 8300000, guid: 249f1bb96aaa7384e8d31a80c42ba04d, type: 3}
+  - {fileID: 8300000, guid: 02ca5cb34cfcbb646a0a071021e23870, type: 3}
+  - {fileID: 8300000, guid: 9df2a6ef17af2a14583f643debe641b8, type: 3}
+  - {fileID: 8300000, guid: 1916dee949dcdc04bb05ebd563b5c771, type: 3}
+  - {fileID: 8300000, guid: 9e763e8a90f8a714da96280bb12b04e6, type: 3}
+  - {fileID: 8300000, guid: 2de606c02d1052a4db31964372fae429, type: 3}
