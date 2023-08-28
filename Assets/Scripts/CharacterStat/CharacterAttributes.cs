@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PrimaryStats
+[System.Serializable]
+public enum PrimaryAttributes
 {
     Strength,
     Vitality,
@@ -13,7 +15,8 @@ public enum PrimaryStats
 
 public class CharacterAttributes : MonoBehaviour
 {
-    public int Level;
+    [Header("*********** LVL **********")]
+    public CharacterLeveL LVL;
 
     [Header("********** Primary Stats **********")]
     public Stat Strength;                    // Increase Weight Cap
@@ -30,16 +33,75 @@ public class CharacterAttributes : MonoBehaviour
     [Header("*********** Bonuses **************")]
     public float HitBonus;
 
-    public Dictionary<PrimaryStats, Stat> PrimaryStatsDict;
+    public Dictionary<PrimaryAttributes, Stat> PrimaryStatsDict;
 
     private void Start()
     {
-        PrimaryStatsDict = new Dictionary<PrimaryStats, Stat>();
-        PrimaryStatsDict.Add(PrimaryStats.Strength, Strength);
-        PrimaryStatsDict.Add(PrimaryStats.Vitality, Vitality);
-        PrimaryStatsDict.Add(PrimaryStats.Speed, Speed);
-        PrimaryStatsDict.Add(PrimaryStats.Attack, Attack);
-        PrimaryStatsDict.Add(PrimaryStats.Defense, Defense);
-        PrimaryStatsDict.Add(PrimaryStats.Resolve, Resolve);
+        PrimaryStatsDict = new Dictionary<PrimaryAttributes, Stat>();
+        PrimaryStatsDict.Add(PrimaryAttributes.Strength, Strength);
+        PrimaryStatsDict.Add(PrimaryAttributes.Vitality, Vitality);
+        PrimaryStatsDict.Add(PrimaryAttributes.Speed, Speed);
+        PrimaryStatsDict.Add(PrimaryAttributes.Attack, Attack);
+        PrimaryStatsDict.Add(PrimaryAttributes.Defense, Defense);
+        PrimaryStatsDict.Add(PrimaryAttributes.Resolve, Resolve);
+
+        LVL.OnLevelIncreased += IncreaseLevel;
+    }
+
+    private void IncreaseLevel()
+    {
+        // Activate options to increase stats
+    }
+
+    private void IncreasePerks()
+    {
+
+    }
+
+
+    [System.Serializable]
+    public class CharacterLeveL
+    {
+        #region *********** Events and Actions ***************
+        public event Action OnLevelIncreased;
+
+        public delegate void ExperienceChanged(int Required, int Current);
+        public event ExperienceChanged OnExperienceChanged;
+        #endregion
+
+        
+        public int LVL;
+        
+        public List<int> ExperienceReqByLVL;
+
+        public int Required;
+
+        [SerializeField]
+        private int _Current;
+        public int Current
+        {
+            get { return _Current; }
+            set
+            {
+                _Current = value;
+
+                if (Current == Required)
+                {
+                    IncreaseLevel();
+                    _Current = 0;
+                }
+
+                OnExperienceChanged(Required, Current);
+            }
+        }
+
+        private void IncreaseLevel()
+        {
+            LVL++;
+
+            Required = ExperienceReqByLVL[LVL];
+
+            OnLevelIncreased();
+        }
     }
 }

@@ -16,7 +16,7 @@ public class CharacterStatus : MonoBehaviour, IDamageable
     {
         character = GetComponent<CharacterManager>();
 
-        Health.DerivateFrom(character.Attributes.PrimaryStatsDict[PrimaryStats.Vitality]);
+        Health.DerivateFrom(character.Attributes.PrimaryStatsDict[PrimaryAttributes.Vitality]);
         character.Status.Health.CurrentValue = character.Status.Health.GetValue();
         character.StatusUI.UpdateHealthUI((int)character.Status.Health.GetValue(), (int)character.Status.Health.CurrentValue);
     }
