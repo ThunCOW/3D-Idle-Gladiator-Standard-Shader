@@ -9,6 +9,7 @@ public class CharacterManager : MonoBehaviour
     [HideInInspector] public CharacterAttributes Attributes;
     [HideInInspector] public CharacterActionManager CharacterActionManager;
     [HideInInspector] public EquipmentManager EquipmentManager;
+    [HideInInspector] public RagdollManager Ragdoll;
 
     [HideInInspector] public AudioSource AudioSource;
     [HideInInspector] public Animator Animator;
@@ -19,6 +20,7 @@ public class CharacterManager : MonoBehaviour
         Attributes = GetComponent<CharacterAttributes>();
         CharacterActionManager = GetComponent<CharacterActionManager>();
         EquipmentManager = GetComponent<EquipmentManager>();
+        Ragdoll = GetComponent<RagdollManager>();
 
         AudioSource = GetComponent<AudioSource>();
         Animator = GetComponentInChildren<Animator>();
@@ -28,7 +30,8 @@ public class CharacterManager : MonoBehaviour
         else
             BattleManager.Characters[Gladiator.Enemy] = this;
 
-        StatusUI = CompareTag("Player") ? UIManager.Instance.PlayerStatus : UIManager.Instance.EnemyStatus;
+        StatusUI = CompareTag("Player") ? UIStatusManager.Instance.PlayerStatus : UIStatusManager.Instance.EnemyStatus;
+        StatusUI.characterManager = this;
     }
 
     private void Start()

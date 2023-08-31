@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BattleStatPanel : MonoBehaviour
 {
+    public static BattleStatPanel Instance;
+
     [Header("****** Battle Stat Top Bar Text ******")]
     [SerializeField]
     private TMP_Text Battle_Stat_Text;
@@ -17,10 +19,32 @@ public class BattleStatPanel : MonoBehaviour
     [SerializeField]
     private BattleStatInfo Enemy;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
         Battle_Stat_Text_DefaultColor = Color.white;
+    }
+
+    public void AssignEvents(CharacterManager characterManager)
+    {
+        characterManager.Status.Health.CurrentValueChanged += PopulateBattleStatInfo;                   // Current Health
+        characterManager.Attributes.Vitality.AttributeChanged += PopulateBattleStatInfo;                // Max Health
+
+        characterManager.Status.Armour.CurrentValueChanged += PopulateBattleStatInfo;                   // Current Armour
+        characterManager.Status.Armour.AttributeChanged += PopulateBattleStatInfo;                      // Max Armour
+
+        characterManager.Status.Fatigue.CurrentValueChanged += PopulateBattleStatInfo;                  // Current Stamina
+        characterManager.Status.Fatigue.AttributeChanged += PopulateBattleStatInfo;                     // Max Stamina
+    }
+
+    private void PopulateBattleStatInfo()
+    {
+        PopulateBattleStatInfo(BattleManager.Characters[Gladiator.Player]);
+        //PopulateBattleStatInfo(BattleManager.Characters[Gladiator.Enemy]);
     }
 
     private void PopulateBattleStatInfo(CharacterManager Character)
@@ -31,22 +55,28 @@ public class BattleStatPanel : MonoBehaviour
         else
             bsi = Enemy;
 
-        //bsi.Hp.text = ((int)Character.Status.Health.CurrentValue).ToString() + " / " + ((int)Character.Status.Health.GetValue()).ToString();
-        //bsi.Armour.text = ((int)Character.Status.Armour.CurrentValue).ToString() + " / " + ((int)Character.Status.Armour.GetValue()).ToString();
-        //bsi.Stamina.text = ((int)Character.Status.Fatigue.CurrentValue).ToString() + " / " + ((int)Character.Status.Fatigue.GetValue()).ToString();
+        bsi.Hp.text = ((int)Character.Status.Health.CurrentValue).ToString() + " / " + ((int)Character.Status.Health.GetValue()).ToString();
+        bsi.Armour.text = ((int)Character.Status.Armour.CurrentValue).ToString() + " / " + ((int)Character.Status.Armour.GetValue()).ToString();
+        bsi.Stamina.text = ((int)Character.Status.Fatigue.CurrentValue).ToString() + " / " + ((int)Character.Status.Fatigue.GetValue()).ToString();
+
+        if (Character.EquipmentManager.EquippedItemsDict[EquipmentType.PrimaryWeapon] != null)
+        {
+            WeaponScriptableObject.WeaponDamage weaponDamage = (Character.EquipmentManager.EquippedItemsDict[EquipmentType.PrimaryWeapon] as WeaponScriptableObject).Damage;
+            bsi.Damage.text = weaponDamage.MinDamage.GetValue().ToString() + " - " + weaponDamage.MaxDamage.GetValue().ToString();
+        }
+        bsi.Hit_Chance.text = Character is PlayerCharacterManager ? BattleStatus.Instance.Player.HitChance.ToString() : BattleStatus.Instance.Enemy.HitChance.ToString();
+        bsi.Attack_Speed.text = Character is PlayerCharacterManager ? (BattleStatus.Instance.Player.AttackSpeed * 100).ToString() + "%" : (BattleStatus.Instance.Enemy.AttackSpeed * 100).ToString() + "%";
     }
 
-    private void OnEnable()
+    public void Btn_Enable()
     {
         Battle_Stat_Text.color = Battle_Stat_Text_SelectedColor;
-
-        PopulateBattleStatInfo(BattleManager.Characters[Gladiator.Player]);
-        PopulateBattleStatInfo(BattleManager.Characters[Gladiator.Enemy]);
+        transform.GetChild(0).gameObject.SetActive(true);
     }
-
-    private void OnDisable()
+    public void Btn_Disable()
     {
         Battle_Stat_Text.color = Battle_Stat_Text_DefaultColor;
+        transform.GetChild(0).gameObject.SetActive(false);
     }
 
     [System.Serializable]

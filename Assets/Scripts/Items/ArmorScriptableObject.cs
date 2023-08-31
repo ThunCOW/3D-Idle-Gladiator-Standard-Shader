@@ -16,7 +16,7 @@ public class ArmorScriptableObject : ItemScriptableObject
 
         character.Status.Armour.ChangeBaseStat(Armour);
         character.Status.Armour.CurrentValue = character.Status.Armour.GetValue();
-        character.StatusUI.UpdateArmourUI((int)character.Status.Armour.GetValue(), (int)character.Status.Armour.CurrentValue);
+        //character.StatusUI.UpdateArmourUI((int)character.Status.Armour.GetValue(), (int)character.Status.Armour.CurrentValue);
     }
     public override void Unequip()
     {
@@ -24,7 +24,7 @@ public class ArmorScriptableObject : ItemScriptableObject
 
         character.Status.Armour.ChangeBaseStat(Armour);
         character.Status.Armour.CurrentValue = character.Status.Armour.GetValue();
-        character.StatusUI.UpdateArmourUI((int)character.Status.Armour.GetValue(), (int)character.Status.Armour.CurrentValue);
+        //character.StatusUI.UpdateArmourUI((int)character.Status.Armour.GetValue(), (int)character.Status.Armour.CurrentValue);
     }
 
     public override string GetDescriptionComparison(ItemScriptableObject EquippedItem)

@@ -30,13 +30,14 @@ public class CharacterAttributes : MonoBehaviour
     public DerivativeStat AttackSpeed;
     public FlexibleDerivativeStat Weight;
 
-    [Header("*********** Bonuses **************")]
-    public float HitBonus;
-
     public Dictionary<PrimaryAttributes, Stat> PrimaryStatsDict;
+    
+    private CharacterManager characterManager;
 
     private void Start()
     {
+        characterManager = GetComponent<CharacterManager>();
+
         PrimaryStatsDict = new Dictionary<PrimaryAttributes, Stat>();
         PrimaryStatsDict.Add(PrimaryAttributes.Strength, Strength);
         PrimaryStatsDict.Add(PrimaryAttributes.Vitality, Vitality);
@@ -46,6 +47,7 @@ public class CharacterAttributes : MonoBehaviour
         PrimaryStatsDict.Add(PrimaryAttributes.Resolve, Resolve);
 
         LVL.OnLevelIncreased += IncreaseLevel;
+        LVL.Init();
     }
 
     private void IncreaseLevel()
@@ -83,7 +85,7 @@ public class CharacterAttributes : MonoBehaviour
             get { return _Current; }
             set
             {
-                _Current = value;
+                _Current = 3;
 
                 if (Current == Required)
                 {
@@ -91,8 +93,22 @@ public class CharacterAttributes : MonoBehaviour
                     _Current = 0;
                 }
 
-                OnExperienceChanged(Required, Current);
+                try
+                {
+                    OnExperienceChanged(Required, Current);         // Only player has this assigned
+                }
+                catch (Exception e)
+                {
+                    if (Required != -1)                             // AI Characters has -1 by default
+                        Debug.LogError(e);
+                }
             }
+        }
+
+        public void Init()
+        {
+            Required = ExperienceReqByLVL[LVL];
+            Current = 0;
         }
 
         private void IncreaseLevel()

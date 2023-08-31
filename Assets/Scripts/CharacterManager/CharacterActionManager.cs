@@ -9,7 +9,7 @@ public enum HitRegion
 public class CharacterActionManager : MonoBehaviour
 {
     private CharacterManager character;
-    [HideInInspector] public BloodSpawner BloodSpawner;
+    [HideInInspector] public WeaponCollider BloodSpawner;
     private AnimationEventController animEventController;
 
     private void Start()
@@ -25,7 +25,7 @@ public class CharacterActionManager : MonoBehaviour
 
     // ************************** Character Animation
 
-    public HitRegion Attack(bool Success, HitRegion HitRegion)            // Returns which region the character is going to attack based on weapon limitations, such as how Axe has no stab 
+    public HitRegion AttackAction(bool Success, HitRegion HitRegion)            // Returns which region the character is going to attack based on weapon limitations, such as how Axe has no stab 
     {
         if (Success)
         {
@@ -53,7 +53,7 @@ public class CharacterActionManager : MonoBehaviour
         }
     }
 
-    public void Block(HitRegion HitRegion)
+    public void BlockAction(HitRegion HitRegion)
     {
         character.Animator.SetTrigger("Block");
         character.Animator.SetFloat("AttackType", (int)HitRegion);
@@ -67,6 +67,6 @@ public class CharacterActionManager : MonoBehaviour
     {
         WeaponScriptableObject WeaponSO = (character.EquipmentManager.EquippedItemsDict[EquipmentType.PrimaryWeapon] as WeaponScriptableObject);
 
-        character.Target.Status.TakeDamage(10, HitRegion, WeaponSO);
+        character.Target.Status.TakeDamage((int)Random.Range(WeaponSO.Damage.MinDamage.GetValue(), WeaponSO.Damage.MaxDamage.GetValue()), HitRegion, WeaponSO);
     }
 }

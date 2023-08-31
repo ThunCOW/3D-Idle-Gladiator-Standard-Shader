@@ -13,21 +13,23 @@ MonoBehaviour:
   m_Name: Sword A
   m_EditorClassIdentifier: 
   Name: Sword A
-  ItemWeight: 0
   Type: 6
+  Weight: 0
+  Value: 0
+  RequiredLevel: 0
   ModelPrefab: {fileID: 3653030727715841234, guid: d468daf46aa8aa74281da87109da9a7b, type: 3}
   ModelSprite: {fileID: 0}
   WeaponColliderPrefab: {fileID: 4178181195336942976, guid: 302ef7d9e311b1e4cac57e6f09f5d2e3, type: 3}
   Damage:
     MinDamage:
-      baseValue: 0
-      DerivatedValue: 0
+      baseValue: 7
+      DerivatedValue: 7
       CharacterManager: {fileID: 0}
       DerivateStat:
         multiplier: 0
     MaxDamage:
-      baseValue: 0
-      DerivatedValue: 0
+      baseValue: 28
+      DerivatedValue: 28
       CharacterManager: {fileID: 0}
       DerivateStat:
         multiplier: 0

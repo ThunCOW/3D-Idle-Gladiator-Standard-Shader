@@ -11,9 +11,13 @@ namespace PostProcessingOutline
 
         private Vector3 defPos;
 
-        private void Start()
+        private UIEquipmentTooltip uiSelectedTooltip;
+
+        private void Awake()
         {
-            defPos = transform.position;    
+            uiSelectedTooltip = GetComponentInParent<UIItemSelectionRaycaster>().UISelectedTooltip;
+
+            defPos = transform.parent.position;
         }
         public void EnterObject()
         {
@@ -28,13 +32,13 @@ namespace PostProcessingOutline
         public void SelectObject()
         {
             EnterObject();
-            UIEquipmentTooltip.Instance.ShowItemTooltip(ShopItem, BattleManager.Characters[Gladiator.Player].EquipmentManager.EquippedItemsDict[ShopItem.Type]);
+            uiSelectedTooltip.ShowItemTooltip(ShopItem, BattleManager.Characters[Gladiator.Player].EquipmentManager.EquippedItemsDict[ShopItem.Type]);
         }
 
         public void DeSelectObject()
         {
             ExitObject();
-            transform.position = defPos;
+            transform.parent.position = defPos;
         }
     }
 }

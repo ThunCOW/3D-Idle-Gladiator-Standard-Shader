@@ -19,7 +19,7 @@ public class WeaponScriptableObject : ItemScriptableObject
         base.Equip(Parent, CharacterManager, TargetSkinnedMesh);
         weaponColliderSceneRef = Instantiate(WeaponColliderPrefab, WeaponColliderSpawnParent);
 
-        character.Attributes.HitBonus += WeaponTypeConfigSO.BonusHitChance;
+        //character.Attributes.HitBonus += WeaponTypeConfigSO.BonusHitChance;
     }
 
     public override void Unequip()
@@ -27,7 +27,7 @@ public class WeaponScriptableObject : ItemScriptableObject
         base.Unequip();
         Destroy(weaponColliderSceneRef);
 
-        character.Attributes.HitBonus -= WeaponTypeConfigSO.BonusHitChance;
+        //character.Attributes.HitBonus -= WeaponTypeConfigSO.BonusHitChance;
     }
 
     public int GetDamage()

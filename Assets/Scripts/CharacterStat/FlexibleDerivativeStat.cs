@@ -4,6 +4,8 @@ using UnityEngine;
 [Serializable]
 public class FlexibleDerivativeStat : DerivativeStat
 {
+    internal event Action CurrentValueChanged;
+
     [Space]
     [SerializeField] protected float _currentValue;
     public float CurrentValue
@@ -22,10 +24,12 @@ public class FlexibleDerivativeStat : DerivativeStat
                 _currentValue = GetValue();
             }
             // for example dead
-            else if (_currentValue <= 0)
+            else if (value <= 0)
             {
                 _currentValue = 0;
             }
+
+            CurrentValueChanged();
         }
     }
 }

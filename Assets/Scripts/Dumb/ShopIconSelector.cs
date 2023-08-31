@@ -16,6 +16,7 @@ public class ShopIconSelector : MonoBehaviour
 
     private RectTransform lastSelected;
 
+    // When player clicks on an icon, hide the selection view if clicked on an item
     [SerializeField]
     private GameObject SelectedItemClose;
     private EventTrigger SelectedItemCloseET;
@@ -31,6 +32,8 @@ public class ShopIconSelector : MonoBehaviour
         }
 
         ShopItems.AddRange(GetComponentsInChildren<ShopItemRef>());
+
+        SelectIcon(Icons[0]);                                                           // Helmet is selected by default
     }
 
     public void SelectIcon(RectTransform SelectedIcon)

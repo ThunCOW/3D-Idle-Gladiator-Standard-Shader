@@ -7,7 +7,7 @@ public class RagdollManager : MonoBehaviour
     public bool RagdollActive;
 
     private Rigidbody rb;
-    private Animator enemyAnimator;
+    private Animator characterAnim;
 
     [Header("________Ragdoll Var________")]
     public GameObject RagdollRig;
@@ -28,8 +28,6 @@ public class RagdollManager : MonoBehaviour
         {
             GetRagdollVars = false;
 
-            RagdollRig = GetComponentInChildren<CopyRigPhysics>().gameObject;
-
             RagdollRigidBodyList = transform.GetChild(0).GetComponentsInChildren<Rigidbody>().ToList();
             RagdollColliderList = transform.GetChild(0).GetComponentsInChildren<Collider>().ToList();
 
@@ -46,7 +44,7 @@ public class RagdollManager : MonoBehaviour
 
     void Awake()
     {
-        enemyAnimator = GetComponentInChildren<Animator>();
+        characterAnim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -54,18 +52,21 @@ public class RagdollManager : MonoBehaviour
     {
         if (RagdollActive)
         {
-            foreach (var col in RagdollColliderList)
-                col.enabled = active;
+            //foreach (var col in RagdollColliderList)
+            //{
+            //    col.isTrigger = false;
+            //    col.enabled = active;
+            //}
             foreach (var rb in RagdollRigidBodyList)
             {
-                rb.detectCollisions = active;
+                //rb.detectCollisions = active;
                 rb.isKinematic = !active;
             }
 
-            enemyAnimator.enabled = !active;
+            characterAnim.enabled = !active;
             if (rb != null)
             {
-                rb.detectCollisions = !active;
+                //rb.detectCollisions = !active;
                 rb.isKinematic = active;
             }
         }
@@ -75,12 +76,14 @@ public class RagdollManager : MonoBehaviour
     {
         if (RagdollActive)
         {
-            RagdollRig.SetActive(true);
             Activate(true);
-
-            RagdollHeadRb.detectCollisions = true;
-            RagdollHeadRb.isKinematic = false;
-            RagdollHeadRb.AddForce(forceDir * 50, ForceMode.Impulse);
+            foreach (var col in RagdollColliderList)
+            {
+                col.isTrigger = false;
+                col.enabled = true;
+            }
+            RagdollRootRb.AddForce(forceDir * 25, ForceMode.Impulse);
+            RagdollHeadRb.AddForce(forceDir * 25, ForceMode.Impulse);
             //RagdollRootRb.AddTorque(Vector3.left * 100000);
         }
     }
@@ -88,7 +91,8 @@ public class RagdollManager : MonoBehaviour
     private void OnEnable()
     {
         Activate(false);
-        RagdollRig.SetActive(false);
+        //RagdollRig.SetActive(false);
+        //RagdollDeath(Vector3.back);
 
         if (!RagdollActive)
         {

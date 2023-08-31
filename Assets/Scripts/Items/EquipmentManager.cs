@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
+    internal event Action WeaponChanged;
+
     [Header("************ Editor Filled ************")]
 
     [SerializeField]
@@ -30,7 +33,7 @@ public class EquipmentManager : MonoBehaviour
     public Dictionary<EquipmentType, ItemScriptableObject> EquippedItemsDict;
     private Dictionary<EquipmentType, SkinnedMeshRenderer> EquipmentTargetSkinnedMeshRenderersDict;
 
-    private void Start()
+    private void Awake()
     {
         characterManager = GetComponent<CharacterManager>();
 
@@ -43,7 +46,10 @@ public class EquipmentManager : MonoBehaviour
         EquippedItemsDict.Add(EquipmentType.Shoes, null);
         EquippedItemsDict.Add(EquipmentType.PrimaryWeapon, null);
         EquippedItemsDict.Add(EquipmentType.SecondaryWeapon, null);
-
+    }
+    
+    private void Start()
+    {
         EquipmentTargetSkinnedMeshRenderersDict = new Dictionary<EquipmentType, SkinnedMeshRenderer>();
         foreach (EquipmentSkinByType.EquipmentSkinTarget EquipmentParent in EquipmentSkinTargets.Target)
         {
@@ -86,7 +92,9 @@ public class EquipmentManager : MonoBehaviour
         else
         {
             (Item as WeaponScriptableObject).Equip(EquipmentSpawnParent, characterManager, EquipmentTargetSkinnedMeshRenderersDict[NewItem.Type], PrimaryWeaponColliderSpawnParent);
-            characterManager.CharacterActionManager.BloodSpawner = PrimaryWeaponColliderSpawnParent.GetComponentInChildren<BloodSpawner>();
+            characterManager.CharacterActionManager.BloodSpawner = PrimaryWeaponColliderSpawnParent.GetComponentInChildren<WeaponCollider>();
+            
+            if (WeaponChanged != null) WeaponChanged();
         }
 
         EquippedItemsDict[NewItem.Type] = Item;

@@ -1125,6 +1125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed543fcebe20ef4cabcedfce4805065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LVL:
+    LVL: 0
+    ExperienceReqByLVL: ffffffff
+    Required: 0
+    _Current: 0
   Strength:
     baseValue: 0
   Vitality:
@@ -1150,7 +1155,6 @@ MonoBehaviour:
     DerivateStat:
       multiplier: 0
     _currentValue: 0
-  HitBonus: 0
 --- !u!114 &3865008591934965239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1199,6 +1203,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0be8bd71a2111c4dacb4ab8464079e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  Status: {fileID: 0}
+  StatusUI: {fileID: 0}
+  Attributes: {fileID: 0}
+  CharacterActionManager: {fileID: 0}
+  EquipmentManager: {fileID: 0}
+  Ragdoll: {fileID: 0}
+  AudioSource: {fileID: 0}
+  Animator: {fileID: 0}
 --- !u!114 &3865008591934965237
 MonoBehaviour:
   m_ObjectHideFlags: 0

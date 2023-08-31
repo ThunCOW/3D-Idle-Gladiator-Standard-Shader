@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Leather 2 Shoes
   m_EditorClassIdentifier: 
   Name: 
-  ItemWeight: 0
-  Type: 2
-  ModelPrefab: {fileID: 6811825305679143211, guid: a3849cf673c64ce4ab670df327389dfa,
-    type: 3}
+  Type: 5
+  Weight: 0
+  Value: 0
+  RequiredLevel: 0
+  ModelPrefab: {fileID: 6811825305679143211, guid: a3849cf673c64ce4ab670df327389dfa, type: 3}
   ModelSprite: {fileID: 0}
   Armour: 10
+  StaminaDamageReductionPerc: 0
   ArmorAudioConfigSO: {fileID: 0}

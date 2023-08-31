@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Leather 2 Shoulders
   m_EditorClassIdentifier: 
   Name: 
-  ItemWeight: 0
-  Type: 0
+  Type: 2
+  Weight: 0
+  Value: 0
+  RequiredLevel: 0
   ModelPrefab: {fileID: 0}
   ModelSprite: {fileID: 0}
   Armour: 0
+  StaminaDamageReductionPerc: 0
   ArmorAudioConfigSO: {fileID: 0}

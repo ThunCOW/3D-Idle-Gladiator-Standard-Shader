@@ -18,7 +18,7 @@ public class BattleManager : MonoBehaviour
     public static Dictionary<Gladiator, CharacterManager> Characters;
 
     private bool isAttacking;
-
+    
     private void Awake()
     {
         Instance = this;
@@ -62,7 +62,7 @@ public class BattleManager : MonoBehaviour
         {
             int HighMidLow = Random.Range(0, 3);    // 0 = high 1 = mid 2 = low
 
-            Attacker.CharacterActionManager.Attack(true, (HitRegion)HighMidLow);
+            Attacker.CharacterActionManager.AttackAction(true, (HitRegion)HighMidLow);
 
             StartCoroutine(WaitForAnimation(Attacker, Defender));
         }
@@ -72,8 +72,8 @@ public class BattleManager : MonoBehaviour
             int HighMidLow = Random.Range(0, 3);    // 0 = high 1 = mid 2 = low
 
             HitRegion HitRegion =
-            Attacker.CharacterActionManager.Attack(false, (HitRegion)HighMidLow);
-            Defender.CharacterActionManager.Block(HitRegion);
+            Attacker.CharacterActionManager.AttackAction(false, (HitRegion)HighMidLow);
+            Defender.CharacterActionManager.BlockAction(HitRegion);
 
             StartCoroutine(WaitForAnimation(Attacker, Defender));
         }
@@ -93,6 +93,10 @@ public class BattleManager : MonoBehaviour
         !Attacker.Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&
         !Defender.Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")
         ));
+
+        // Check if died here !
+        //if (Defender.Animator.GetCurrentAnimatorStateInfo(0).IsName())
+
         // Wait until both character goes back to "Idle" state and ready for action
         yield return new WaitUntil(() => (
         Attacker.Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") &&

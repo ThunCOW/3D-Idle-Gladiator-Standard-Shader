@@ -22,7 +22,6 @@ namespace Knife.RealBlood
         private float aimWeight = 0;
         private Animator robotAnimator;
 
-        private float aimAngle = 0;
 
         private Quaternion targetRotation;
         private Quaternion startRotation;

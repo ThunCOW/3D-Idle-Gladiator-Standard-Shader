@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CharacterStatus : MonoBehaviour, IDamageable
 {
-    private CharacterManager character;
+    private CharacterManager characterManager;
 
     public FlexibleStat Armour;
     public FlexibleDerivativeStat Health;
@@ -14,49 +14,88 @@ public class CharacterStatus : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        character = GetComponent<CharacterManager>();
+        characterManager = GetComponent<CharacterManager>();
 
-        Health.DerivateFrom(character.Attributes.PrimaryStatsDict[PrimaryAttributes.Vitality]);
-        character.Status.Health.CurrentValue = character.Status.Health.GetValue();
-        character.StatusUI.UpdateHealthUI((int)character.Status.Health.GetValue(), (int)character.Status.Health.CurrentValue);
+        Health.CurrentValueChanged += characterManager.StatusUI.UpdateHealthUI;
+        Armour.CurrentValueChanged += characterManager.StatusUI.UpdateArmourUI;
+
+        Health.DerivateFrom(characterManager.Attributes.PrimaryStatsDict[PrimaryAttributes.Vitality]);
+        Health.CurrentValue = characterManager.Status.Health.GetValue();
+        //characterManager.StatusUI.UpdateHealthUI((int)characterManager.Status.Health.GetValue(), (int)characterManager.Status.Health.CurrentValue);
+
+        characterManager.Attributes.PrimaryStatsDict[PrimaryAttributes.Vitality].AttributeChanged += characterManager.StatusUI.UpdateHealthUI;
+        Armour.AttributeChanged += characterManager.StatusUI.UpdateArmourUI;
+
+        BattleStatPanel.Instance.AssignEvents(characterManager);
+        BattleStatus.Instance.AssignEvents(characterManager);
     }
 
     public void TakeDamage(int Damage, HitRegion HitRegion, WeaponScriptableObject WeaponSO)
     {
         PlayTakeDamageSound(WeaponSO);
-        PlayHurtAnimation(HitRegion);
         //SpawnBlood();
 
         float damageTaken = Mathf.Clamp(Damage, 0, Health.CurrentValue);
 
-        float newHealth = Mathf.Clamp(Health.CurrentValue - Damage, 0, Health.CurrentValue);
+        // Armour Damage
+        if (Armour.CurrentValue != 0)
+        {
+            float newArmour = Armour.CurrentValue - Damage;
 
-        Health.CurrentValue = newHealth;
+            Armour.CurrentValue = newArmour;
+
+            // Armour Broke
+            if (newArmour < 0)
+            {
+                // Takes half the damage after armour broke
+                float newHealth = Mathf.Clamp(Health.CurrentValue - (newArmour * -1 / 2), 0, Health.CurrentValue);
+
+                Health.CurrentValue = newHealth;
+            }
+            // Armour Takes All
+            else
+            {
+                // Even if Armour takes damage, weapon still damages the character up to X % of HP
+                float percToHp = Random.Range(0, 25) / 100f;
+                float newHealth = Mathf.Clamp(Health.CurrentValue - (int)(percToHp * Damage), 0, Health.CurrentValue);  
+
+                Health.CurrentValue = newHealth;
+            }
+        }
+        // Health Damage
+        else
+        {
+            float newHealth = Mathf.Clamp(Health.CurrentValue - Damage, 0, Health.CurrentValue);
+
+            Health.CurrentValue = newHealth;
+        }
+
+        characterManager.StatusUI.UpdateHealthUI((int)Health.GetValue(), (int)Health.CurrentValue);
+        //characterManager.StatusUI.UpdateArmourUI((int)Armour.GetValue(), (int)Armour.CurrentValue);
 
         if (Health.CurrentValue == 0 && damageTaken != 0)
         {
             OnDeath?.Invoke();
+            characterManager.CharacterActionManager.BloodSpawner.RagdollHit();
             return;
         }
-
-        character.StatusUI.UpdateHealthUI((int)Health.GetValue(), (int)Health.CurrentValue);
-        character.StatusUI.UpdateArmourUI((int)Armour.GetValue(), (int)Armour.CurrentValue);
 
         if (Health.CurrentValue != 0)
         {
             OnTakeDamage?.Invoke(HitRegion);
+            PlayHurtAnimation(HitRegion);
         }
     }
 
     private void PlayTakeDamageSound(WeaponScriptableObject WeaponSO)
     {
-        if (Armour.CurrentValue > 0)
-            WeaponSO.WeaponAudioConfigSO.PlayHitSound(character.AudioSource);
+        if (Armour.CurrentValue >= 0)
+            WeaponSO.WeaponAudioConfigSO.PlayHitSound(characterManager.AudioSource);
         else
         {
             // TODO : go through equipped armors to select a random piece and play the hit sound based on random equipped pieces
-            ArmorScriptableObject ArmorSO = character.EquipmentManager.EquippedItemsDict[EquipmentType.Breatplate] as ArmorScriptableObject;
-            ArmorSO.ArmorAudioConfigSO.PlayArmorSound(character.AudioSource);
+            ArmorScriptableObject ArmorSO = characterManager.EquipmentManager.EquippedItemsDict[EquipmentType.Breatplate] as ArmorScriptableObject;
+            ArmorSO.ArmorAudioConfigSO.PlayArmorSound(characterManager.AudioSource);
         }
     }
 
@@ -65,13 +104,13 @@ public class CharacterStatus : MonoBehaviour, IDamageable
         switch (HitRegion)
         {
             case HitRegion.High:
-                character.Animator.SetTrigger("Hurt");
+                characterManager.Animator.SetTrigger("Hurt");
                 break;
             case HitRegion.Mid:
-                character.Animator.SetTrigger("Hurt");
+                characterManager.Animator.SetTrigger("Hurt");
                 break;
             case HitRegion.Low:
-                character.Animator.SetTrigger("Hurt");
+                characterManager.Animator.SetTrigger("Hurt");
                 break;
         }
     }

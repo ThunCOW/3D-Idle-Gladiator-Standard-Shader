@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b31534ba73255f46a92ee8777d16a95, type: 3}
+  m_Name: Myrdion Shoulders
+  m_EditorClassIdentifier: 
+  Name: 
+  Type: 2
+  Weight: 0
+  Value: 0
+  RequiredLevel: 0
+  ModelPrefab: {fileID: 2372197017549503152, guid: bd49db80965fdb243b8655b918a16c7c, type: 3}
+  ModelSprite: {fileID: 0}
+  Armour: 0
+  StaminaDamageReductionPerc: 0
+  ArmorAudioConfigSO: {fileID: 0}

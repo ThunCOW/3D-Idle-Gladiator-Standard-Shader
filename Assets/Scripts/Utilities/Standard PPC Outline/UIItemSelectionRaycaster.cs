@@ -13,6 +13,9 @@ namespace PostProcessingOutline
 
         [Space]
         public GameObject SelectedObjectPosition;
+
+        [Space]
+        public UIEquipmentTooltip UISelectedTooltip;
         
         private ShopItemSelectable selectedItem;
         private ShopItemSelectable lastHoverItem;
@@ -44,7 +47,7 @@ namespace PostProcessingOutline
                     if (shopItem != null)
                     {
                         shopItem.SelectObject();
-                        shopItem.transform.position = SelectedObjectPosition.transform.position;
+                        shopItem.transform.parent.position = SelectedObjectPosition.transform.position;
                         selectedItem = shopItem;
                         lastHoverItem = null;
                     }
