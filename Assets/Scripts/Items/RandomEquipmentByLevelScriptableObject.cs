@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 [CreateAssetMenu(fileName = "Random Equipment By Level", menuName = "Item Menu/Random Equipment List By LVL")]
 public class RandomEquipmentByLevelScriptableObject : ScriptableObject
 {
-    public List<RandomEquipmentByLevel> RandomEquipmentByLevelList = new List<RandomEquipmentByLevel>();
+    [SerializeField] 
+    private List<RandomEquipmentByLevel> RandomEquipmentByLevelList = new List<RandomEquipmentByLevel>();
 
-    public Dictionary<int, RandomEquipmentByLevel> RandomEquipmentByLevelDict;
+    [SerializeField] 
+    private Dictionary<int, RandomEquipmentByLevel> RandomEquipmentByLevelDict;
 
     public void Init()
     {
@@ -21,11 +24,11 @@ public class RandomEquipmentByLevelScriptableObject : ScriptableObject
         }
     }
 
-    public void GetEquipment(int LVL)
+    public List<ItemScriptableObject> GetEquipment(int LVL)
     {
         List<int> keys = new List<int>(RandomEquipmentByLevelDict.Keys);
 
-        int selectedLVL;
+        int selectedLVL = -1;
         foreach (int key in keys)
         {
             if (key < LVL)
@@ -33,7 +36,21 @@ public class RandomEquipmentByLevelScriptableObject : ScriptableObject
             else
                 break;
         }
+
+        List<ItemScriptableObject> itemList = new List<ItemScriptableObject>();
+
+        RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Helmet, itemList);
+        RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Breatplate, itemList);
+        RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Shoulder, itemList);
+        RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Gauntlets, itemList);
+        RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Pants, itemList);
+        RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Shoes, itemList);
+        RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.PrimaryWeapon, itemList);
+        RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.SecondaryWeapon, itemList);
+
+        return itemList;
     }
+
     [System.Serializable]
     public class RandomEquipmentByLevel
     {
@@ -48,27 +65,43 @@ public class RandomEquipmentByLevelScriptableObject : ScriptableObject
         public List<ItemScriptableObject> PrimaryWeapons;
         public List<ItemScriptableObject> SecondaryWeapons;
 
-        public Dictionary<EquipmentType, ItemScriptableObject> RandomItemDict;
+        public Dictionary<EquipmentType, List<ItemScriptableObject>> RandomItemDict;
 
         public void Init()
         {
-            RandomItemDict = new Dictionary<EquipmentType, ItemScriptableObject>();
-            PopulateDict(Helmet);
-            PopulateDict(Breastplate);
-            PopulateDict(Shooulders);
-            PopulateDict(Gauntlets);
-            PopulateDict(Pants);
-            PopulateDict(Shoes); 
-            PopulateDict(PrimaryWeapons);
-            PopulateDict(SecondaryWeapons);
+            RandomItemDict = new Dictionary<EquipmentType, List<ItemScriptableObject>>();
+            RandomItemDict.Add(EquipmentType.Helmet, Helmet);
+            RandomItemDict.Add(EquipmentType.Breatplate, Breastplate);
+            RandomItemDict.Add(EquipmentType.Shoulder, Shooulders);
+            RandomItemDict.Add(EquipmentType.Gauntlets, Gauntlets);
+            RandomItemDict.Add(EquipmentType.Pants, Pants);
+            RandomItemDict.Add(EquipmentType.Shoes, Shoes);
+            RandomItemDict.Add(EquipmentType.PrimaryWeapon, PrimaryWeapons);
+            RandomItemDict.Add(EquipmentType.SecondaryWeapon, SecondaryWeapons);
+            //PopulateDict(Helmet);
+            //PopulateDict(Breastplate);
+            //PopulateDict(Shooulders);
+            //PopulateDict(Gauntlets);
+            //PopulateDict(Pants);
+            //PopulateDict(Shoes); 
+            //PopulateDict(PrimaryWeapons);
+            //PopulateDict(SecondaryWeapons);
         }
 
         private void PopulateDict(List<ItemScriptableObject> ItemList)
         {
-            foreach (ItemScriptableObject item in ItemList)
-            {
-                RandomItemDict.Add(item.Type, item);
-            }
+            //foreach (ItemScriptableObject item in ItemList)
+            //{
+            //    RandomItemDict.Add(item.Type, item);
+            //}
+        }
+
+        public void GetRandomItem(EquipmentType type, List<ItemScriptableObject> list)
+        {
+            if (RandomItemDict[type].Count == 0)
+                return;
+            
+            list.Add(RandomItemDict[type][Random.Range(0, RandomItemDict[type].Count)]);
         }
     }
 }

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerCharacterManager : CharacterManager
 {
     public delegate void OnGoldChange(int ChangeAmount);
@@ -12,5 +14,10 @@ public class PlayerCharacterManager : CharacterManager
             _playerGold = value;
             GoldChangeEvent(value);
         }
+    }
+
+    public void RefreshCharacter()
+    {
+        Debug.Log("Refresh");
     }
 }

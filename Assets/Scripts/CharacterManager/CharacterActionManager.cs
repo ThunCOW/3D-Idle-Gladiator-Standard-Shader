@@ -67,6 +67,8 @@ public class CharacterActionManager : MonoBehaviour
     {
         WeaponScriptableObject WeaponSO = (character.EquipmentManager.EquippedItemsDict[EquipmentType.PrimaryWeapon] as WeaponScriptableObject);
 
-        character.Target.Status.TakeDamage((int)Random.Range(WeaponSO.Damage.MinDamage.GetValue(), WeaponSO.Damage.MaxDamage.GetValue()), HitRegion, WeaponSO);
+        CharacterManager target = CompareTag("Player") ? BattleManager.Characters[Gladiator.Enemy] : BattleManager.Characters[Gladiator.Player];
+
+        target.Status.TakeDamage((int)Random.Range(WeaponSO.Damage.MinDamage.GetValue(), WeaponSO.Damage.MaxDamage.GetValue()), HitRegion, WeaponSO);
     }
 }

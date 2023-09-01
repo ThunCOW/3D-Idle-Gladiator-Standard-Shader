@@ -14,26 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RandomEquipmentByLevelList:
   - LVL: 0
-    Helmet: []
-    Breastplate: []
+    Helmet:
+    - {fileID: 11400000, guid: 9a1206c9ec3ea93458610754b35965bf, type: 2}
+    Breastplate:
+    - {fileID: 11400000, guid: cbb69542bd4dc444e9f9263c802884df, type: 2}
     Shooulders: []
     Gauntlets: []
     Pants: []
     Shoes: []
     PrimaryWeapons: []
     SecondaryWeapons: []
-  - LVL: 0
-    Helmet: []
-    Breastplate: []
-    Shooulders: []
-    Gauntlets: []
-    Pants: []
-    Shoes: []
-    PrimaryWeapons: []
-    SecondaryWeapons: []
-  - LVL: 0
-    Helmet: []
-    Breastplate: []
+  - LVL: 1
+    Helmet:
+    - {fileID: 11400000, guid: 9a1206c9ec3ea93458610754b35965bf, type: 2}
+    Breastplate:
+    - {fileID: 11400000, guid: cbb69542bd4dc444e9f9263c802884df, type: 2}
     Shooulders: []
     Gauntlets: []
     Pants: []

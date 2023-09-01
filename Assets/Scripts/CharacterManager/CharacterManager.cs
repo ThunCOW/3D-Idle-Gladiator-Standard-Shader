@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    public CharacterManager Target;
-
     [HideInInspector] public CharacterStatus Status;
     [HideInInspector] public UIStatus StatusUI;
     [HideInInspector] public CharacterAttributes Attributes;
@@ -32,11 +30,6 @@ public class CharacterManager : MonoBehaviour
 
         StatusUI = CompareTag("Player") ? UIStatusManager.Instance.PlayerStatus : UIStatusManager.Instance.EnemyStatus;
         StatusUI.characterManager = this;
-    }
-
-    private void Start()
-    {
-        Target = CompareTag("Player") ? BattleManager.Characters[Gladiator.Enemy] : BattleManager.Characters[Gladiator.Player];
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
