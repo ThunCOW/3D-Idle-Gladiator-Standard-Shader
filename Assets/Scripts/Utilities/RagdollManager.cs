@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class RagdollManager : MonoBehaviour
 {
-    public bool RagdollActive;
-
+    private Vector3 posDef;
+    private Quaternion rotDef;
+    
     private Rigidbody rb;
     private Animator characterAnim;
 
-    [Header("________Ragdoll Var________")]
+    [Header("************* Ragdoll Editor Filled ***********")]
     public GameObject RagdollRig;
     [Space]
 
@@ -46,62 +47,58 @@ public class RagdollManager : MonoBehaviour
     {
         characterAnim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
+
+        posDef = RagdollRig.transform.position;
+        rotDef = RagdollRig.transform.rotation;
     }
 
-    public void Activate(bool active)
+    private void Activate(bool active)
     {
-        if (RagdollActive)
+        //foreach (var col in RagdollColliderList)
+        //{
+        //    col.isTrigger = false;
+        //    col.enabled = active;
+        //}
+        foreach (var rb in RagdollRigidBodyList)
         {
-            //foreach (var col in RagdollColliderList)
-            //{
-            //    col.isTrigger = false;
-            //    col.enabled = active;
-            //}
-            foreach (var rb in RagdollRigidBodyList)
-            {
-                //rb.detectCollisions = active;
-                rb.isKinematic = !active;
-            }
+            //rb.detectCollisions = active;
+            rb.isKinematic = !active;
+        }
 
-            characterAnim.enabled = !active;
-            if (rb != null)
-            {
-                //rb.detectCollisions = !active;
-                rb.isKinematic = active;
-            }
+        characterAnim.enabled = !active;
+        if (rb != null)
+        {
+            //rb.detectCollisions = !active;
+            rb.isKinematic = active;
         }
     }
 
     public void RagdollDeath(Vector3 forceDir)
     {
-        if (RagdollActive)
+        Activate(true);
+        foreach (var col in RagdollColliderList)
         {
-            Activate(true);
-            foreach (var col in RagdollColliderList)
-            {
-                col.isTrigger = false;
-                col.enabled = true;
-            }
-            RagdollRootRb.AddForce(forceDir * 25, ForceMode.Impulse);
-            RagdollHeadRb.AddForce(forceDir * 25, ForceMode.Impulse);
-            //RagdollRootRb.AddTorque(Vector3.left * 100000);
+            col.isTrigger = false;
+            col.enabled = true;
         }
+        RagdollRootRb.AddForce(forceDir * 25, ForceMode.Impulse);
+        RagdollHeadRb.AddForce(forceDir * 25, ForceMode.Impulse);
+        //RagdollRootRb.AddTorque(Vector3.left * 100000);
     }
 
-    private void OnEnable()
+    public void RagdollOff()
     {
         Activate(false);
-        //RagdollRig.SetActive(false);
-        //RagdollDeath(Vector3.back);
-
-        if (!RagdollActive)
+        foreach (var col in RagdollColliderList)
         {
-            foreach (Rigidbody rig in RagdollRigidBodyList)
-            {
-                //Destroy(rig.GetComponent<ConfigurableJoint>());
-                //Destroy(rig.GetComponent<CapsuleCollider>());
-                //Destroy(rig);
-            }
+            col.isTrigger = true;
+            col.enabled = true;
         }
-    }
+        RagdollRig.transform.position = posDef;
+        RagdollRig.transform.rotation = rotDef;
+
+        var bloodDecalList = RagdollRig.GetComponentsInChildren<BFX_ShaderProperies>();
+        for (int i = bloodDecalList.Length - 1; i >= 0; i--)
+            Destroy(bloodDecalList[i].gameObject);
+    }     
 }

@@ -1717,6 +1717,7 @@ GameObject:
   - component: {fileID: 3865008591934965257}
   - component: {fileID: 3865008591934965238}
   - component: {fileID: 3865008591934965239}
+  - component: {fileID: 1793454401576095714}
   - component: {fileID: 8807313326301039340}
   - component: {fileID: 3865008591934965237}
   - component: {fileID: 3865008591934965234}
@@ -1759,9 +1760,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LVL:
     LVL: 0
-    ExperienceReqByLVL: ffffffff
+    ExperienceReqByLVL: e7030000
     Required: 0
-    _Current: 0
+    _CurrentEXP: 0
   Strength:
     baseValue: 0
   Vitality:
@@ -1803,7 +1804,7 @@ MonoBehaviour:
     baseValue: 0
     _currentValue: 0
   Health:
-    baseValue: 1
+    baseValue: 40
     DerivatedValue: 0
     CharacterManager: {fileID: 0}
     DerivateStat:
@@ -1823,6 +1824,19 @@ MonoBehaviour:
     DerivateStat:
       multiplier: 0
     _currentValue: 0
+--- !u!114 &1793454401576095714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865008591934965256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d10cbb8a72c0a94681aaf03ee63a9aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BodyFeaturesParent: {fileID: 3865008591131993270}
 --- !u!114 &8807313326301039340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1835,15 +1849,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0be8bd71a2111c4dacb4ab8464079e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Status: {fileID: 0}
   StatusUI: {fileID: 0}
   Attributes: {fileID: 0}
   CharacterActionManager: {fileID: 0}
   EquipmentManager: {fileID: 0}
   Ragdoll: {fileID: 0}
+  BodyParts: {fileID: 0}
+  CharacterFeatureManager: {fileID: 0}
   AudioSource: {fileID: 0}
   Animator: {fileID: 0}
+  GladiatorType: 0
 --- !u!114 &3865008591934965237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2001,8 +2017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c04c52b16323b4e8a019bd227a96a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RagdollActive: 1
-  RagdollRig: {fileID: 1268489436671945038}
+  RagdollRig: {fileID: 1683163925275397683}
   GetRagdollVars: 0
   RagdollColliderList:
   - {fileID: 93417026}
@@ -2153,7 +2168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5000202958898764975
 Transform:
   m_ObjectHideFlags: 0
@@ -2161,9 +2176,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3886903058334090157}
-  m_LocalRotation: {x: 0.7071068, y: 1.9293302e-10, z: 7.4600764e-10, w: 0.7071067}
+  m_LocalRotation: {x: -0, y: -0, z: 1.3877788e-17, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.009999996, z: 0.009999998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3865008591131993270}
@@ -4345,7 +4360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &709352802031085232
 Transform:
   m_ObjectHideFlags: 0
@@ -4940,7 +4955,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8923340322829301032
 Transform:
   m_ObjectHideFlags: 0
@@ -4948,9 +4963,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7622099926144988741}
-  m_LocalRotation: {x: 0.7071068, y: -3.225938e-25, z: 2.62786e-32, w: 0.7071067}
+  m_LocalRotation: {x: -0, y: -6.6393135e-10, z: -3.9108278e-10, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.009999998, z: 0.009999998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3865008591131993270}
@@ -4976,7 +4991,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c11f5ed88d80c7e41a4b5b5af7aff861, type: 2}
+  - {fileID: 2100000, guid: 4ef43fc3429512549949920a0c90edca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

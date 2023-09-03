@@ -6,6 +6,7 @@ public class ArmorScriptableObject : ItemScriptableObject
     [Header("***************** Armor SO ***************")]
     public int Armour;
     public float StaminaDamageReductionPerc;
+    public bool HideBodyPart;
     [Space]
 
     public ArmorAudioConfigurationScriptableObject ArmorAudioConfigSO;
@@ -16,7 +17,9 @@ public class ArmorScriptableObject : ItemScriptableObject
 
         character.Status.Armour.ChangeBaseStat(Armour);
         character.Status.Armour.CurrentValue = character.Status.Armour.GetValue();
-        //character.StatusUI.UpdateArmourUI((int)character.Status.Armour.GetValue(), (int)character.Status.Armour.CurrentValue);
+    
+        if (HideBodyPart)
+            character.BodyParts.BodyPartsDict[Type].SetActive(false);
     }
     public override void Unequip()
     {
@@ -25,6 +28,8 @@ public class ArmorScriptableObject : ItemScriptableObject
         character.Status.Armour.ChangeBaseStat(Armour);
         character.Status.Armour.CurrentValue = character.Status.Armour.GetValue();
         //character.StatusUI.UpdateArmourUI((int)character.Status.Armour.GetValue(), (int)character.Status.Armour.CurrentValue);
+
+        character.BodyParts.BodyPartsDict[Type].SetActive(true);
     }
 
     public override string GetDescriptionComparison(ItemScriptableObject EquippedItem)
@@ -118,6 +123,7 @@ public class ArmorScriptableObject : ItemScriptableObject
         clone.ModelSprite = ModelSprite;
         clone.Armour = Armour;
         clone.StaminaDamageReductionPerc = StaminaDamageReductionPerc;
+        clone.HideBodyPart = HideBodyPart;
         clone.ArmorAudioConfigSO = ArmorAudioConfigSO;
 
         return clone;

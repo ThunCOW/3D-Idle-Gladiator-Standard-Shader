@@ -34,22 +34,24 @@ public class BattleStatus : MonoBehaviour
 
     private void PopulateBattleStats()
     {
-        //PopulateBattleStats(BattleManager.Characters[Gladiator.Player], BattleManager.Characters[Gladiator.Enemy]);
+        if (BattleManager.Characters[Gladiator.Player] != null && BattleManager.Characters[Gladiator.Enemy] != null)
+        {
+            PopulateBattleStats(BattleManager.Characters[Gladiator.Player], BattleManager.Characters[Gladiator.Enemy]);
+        }
     }
 
     private void PopulateBattleStats(CharacterManager playerCManager, CharacterManager enemyCManager)
     {
-        Player.HitChance = (int)(playerCManager.Attributes.Attack.GetValue() - enemyCManager.Attributes.Defense.GetValue());
-        Enemy.HitChance = (int)(enemyCManager.Attributes.Attack.GetValue() - playerCManager.Attributes.Defense.GetValue());
+        Player.HitChance = 50 + 5 * (int)(playerCManager.Attributes.Attack.GetValue() - enemyCManager.Attributes.Defense.GetValue());
+        Enemy.HitChance = 50 + 5 * (int)(enemyCManager.Attributes.Attack.GetValue() - playerCManager.Attributes.Defense.GetValue());
 
         Player.DefendChance = (int)(playerCManager.Attributes.Defense.GetValue() - enemyCManager.Attributes.Attack.GetValue());
         Enemy.DefendChance = (int)(enemyCManager.Attributes.Defense.GetValue() - playerCManager.Attributes.Attack.GetValue());
 
-
-        Player.AttackSpeed = 1 + (int)((playerCManager.Attributes.Weight.GetValue() - playerCManager.Attributes.Weight.CurrentValue) -
+        Player.AttackSpeed = 1 + ((playerCManager.Attributes.Weight.GetValue() - playerCManager.Attributes.Weight.CurrentValue) -
                                         (enemyCManager.Attributes.Weight.GetValue() - enemyCManager.Attributes.Weight.CurrentValue));
 
-        Enemy.AttackSpeed = 1 + (int)((enemyCManager.Attributes.Weight.GetValue() - enemyCManager.Attributes.Weight.CurrentValue) -
+        Enemy.AttackSpeed = 1 + ((enemyCManager.Attributes.Weight.GetValue() - enemyCManager.Attributes.Weight.CurrentValue) -
                                         (playerCManager.Attributes.Weight.GetValue() - playerCManager.Attributes.Weight.CurrentValue));
     }
 
@@ -58,6 +60,6 @@ public class BattleStatus : MonoBehaviour
     {
         public int HitChance;
         public int DefendChance;
-        public int AttackSpeed;
+        public float AttackSpeed;
     }
 }

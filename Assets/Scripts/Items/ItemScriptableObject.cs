@@ -74,6 +74,7 @@ public class ItemScriptableObject : ScriptableObject, ICloneable
 
     public static void TransferSkinnedMeshes(SkinnedMeshRenderer SkinnedMeshRenderer, SkinnedMeshRenderer TargetSkinnedMeshRenderer, Transform NewParent)
     {
+        GameObject SkinnedMeshRendererParent = SkinnedMeshRenderer.transform.parent.gameObject;
         Transform newArmature = TargetSkinnedMeshRenderer.rootBone;
         Transform[] newBones = TargetSkinnedMeshRenderer.bones;
 
@@ -81,6 +82,15 @@ public class ItemScriptableObject : ScriptableObject, ICloneable
         SkinnedMeshRenderer.bones = newBones;
         SkinnedMeshRenderer.transform.SetParent(NewParent);
         SkinnedMeshRenderer.transform.localPosition = Vector3.zero;
+
+        if (!EditorApplication.isPlaying || !Application.isPlaying)
+        {
+            DestroyImmediate(SkinnedMeshRendererParent);
+        }
+        else
+        {
+            Destroy(SkinnedMeshRendererParent);
+        }
     }
 
     public virtual string GetDescriptionComparison(ItemScriptableObject EquippedItem) { return ""; }

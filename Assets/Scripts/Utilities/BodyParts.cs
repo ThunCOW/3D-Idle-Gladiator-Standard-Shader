@@ -28,6 +28,8 @@ namespace EquipItemEditor
 
         [HideInInspector] public List<GameObject> Parts;
 
+        public Dictionary<EquipmentType, GameObject> BodyPartsDict;
+
         void OnValidate()
         {
             Parts = new List<GameObject>();
@@ -39,6 +41,19 @@ namespace EquipItemEditor
             Parts.Add(Shoes);
             Parts.Add(PrimaryWeapon);
             Parts.Add(SecondaryWeapon);
+        }
+
+        private void Awake()
+        {
+            BodyPartsDict = new Dictionary<EquipmentType, GameObject>();
+            BodyPartsDict.Add(EquipmentType.Helmet, Helmet);
+            BodyPartsDict.Add(EquipmentType.Breatplate, Breatplate);
+            BodyPartsDict.Add(EquipmentType.Shoulder, Shoulder);
+            BodyPartsDict.Add(EquipmentType.Gauntlets, Gauntlets);
+            BodyPartsDict.Add(EquipmentType.Pants, Pants);
+            BodyPartsDict.Add(EquipmentType.Shoes, Shoes);
+            BodyPartsDict.Add(EquipmentType.PrimaryWeapon, PrimaryWeapon);
+            BodyPartsDict.Add(EquipmentType.SecondaryWeapon, SecondaryWeapon);
         }
     }
 }

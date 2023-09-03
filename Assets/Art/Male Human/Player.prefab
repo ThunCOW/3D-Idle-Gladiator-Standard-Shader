@@ -1056,7 +1056,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c11f5ed88d80c7e41a4b5b5af7aff861, type: 2}
+  - {fileID: 2100000, guid: 4ef43fc3429512549949920a0c90edca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1559,9 +1559,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891333274172401291}
-  m_LocalRotation: {x: 0.7071068, y: 1.9293302e-10, z: 7.4600764e-10, w: 0.7071067}
+  m_LocalRotation: {x: 0.7071068, y: 1.92933e-10, z: 7.4600764e-10, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.009999996, z: 0.009999998}
+  m_LocalScale: {x: 0.01, y: 0.009999994, z: 0.009999996}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5736064308392162425}
@@ -3994,6 +3994,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5736064307592844998}
   - component: {fileID: 5736064307592844601}
+  - component: {fileID: 243606088207676375}
   - component: {fileID: 5736064307592844600}
   - component: {fileID: 6220552849188964874}
   - component: {fileID: 5736064307592844603}
@@ -4039,7 +4040,7 @@ MonoBehaviour:
     LVL: 0
     ExperienceReqByLVL: 0300000005000000
     Required: 0
-    _Current: 0
+    _CurrentEXP: 0
   Strength:
     baseValue: 0
   Vitality:
@@ -4065,6 +4066,19 @@ MonoBehaviour:
     DerivateStat:
       multiplier: 0
     _currentValue: 0
+--- !u!114 &243606088207676375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5736064307592844999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d10cbb8a72c0a94681aaf03ee63a9aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BodyFeaturesParent: {fileID: 5736064308392162425}
 --- !u!114 &5736064307592844600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4113,7 +4127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c04c52b16323b4e8a019bd227a96a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RagdollActive: 1
   RagdollRig: {fileID: 7756122847992953217}
   GetRagdollVars: 0
   RagdollColliderList:
@@ -4162,15 +4175,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b94455c52ce9e43a798cec75f1591a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Status: {fileID: 0}
   StatusUI: {fileID: 0}
   Attributes: {fileID: 0}
   CharacterActionManager: {fileID: 0}
   EquipmentManager: {fileID: 0}
   Ragdoll: {fileID: 0}
+  BodyParts: {fileID: 0}
+  CharacterFeatureManager: {fileID: 0}
   AudioSource: {fileID: 0}
   Animator: {fileID: 0}
+  GladiatorType: 0
 --- !u!114 &5736064307592844602
 MonoBehaviour:
   m_ObjectHideFlags: 0

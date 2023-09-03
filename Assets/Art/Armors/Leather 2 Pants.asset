@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Leather 2 Pants
   m_EditorClassIdentifier: 
   Name: 
-  ItemWeight: 0
   Type: 4
-  ModelPrefab: {fileID: 598628949826766418, guid: 1fcd5f80263fbc44ab086b5a2356d8b1,
-    type: 3}
+  Weight: 0
+  Value: 0
+  RequiredLevel: 0
+  ModelPrefab: {fileID: 598628949826766418, guid: 1fcd5f80263fbc44ab086b5a2356d8b1, type: 3}
   ModelSprite: {fileID: 0}
   Armour: 10
+  StaminaDamageReductionPerc: 0
+  HideBodyPart: 1
   ArmorAudioConfigSO: {fileID: 0}

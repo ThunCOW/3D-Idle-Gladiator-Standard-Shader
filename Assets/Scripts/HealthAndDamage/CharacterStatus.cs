@@ -26,8 +26,8 @@ public class CharacterStatus : MonoBehaviour, IDamageable
         characterManager.Attributes.PrimaryStatsDict[PrimaryAttributes.Vitality].AttributeChanged += characterManager.StatusUI.UpdateHealthUI;
         Armour.AttributeChanged += characterManager.StatusUI.UpdateArmourUI;
 
-        BattleStatPanel.Instance.AssignEvents(characterManager);
         BattleStatus.Instance.AssignEvents(characterManager);
+        BattleStatPanel.Instance.AssignEvents(characterManager);
     }
 
     public void TakeDamage(int Damage, HitRegion HitRegion, WeaponScriptableObject WeaponSO)

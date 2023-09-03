@@ -28,10 +28,10 @@ public class RandomEquipmentByLevelScriptableObject : ScriptableObject
     {
         List<int> keys = new List<int>(RandomEquipmentByLevelDict.Keys);
 
-        int selectedLVL = -1;
+        int selectedLVL = 0;
         foreach (int key in keys)
         {
-            if (key < LVL)
+            if (key <= LVL)
                 selectedLVL = key;
             else
                 break;

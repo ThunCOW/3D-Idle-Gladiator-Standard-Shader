@@ -79,27 +79,26 @@ public class CharacterAttributes : MonoBehaviour
         public int Required;
 
         [SerializeField]
-        private int _Current;
-        public int Current
+        private int _CurrentEXP;
+        public int CurrentEXP
         {
-            get { return _Current; }
+            get { return _CurrentEXP; }
             set
             {
-                _Current = 3;
+                _CurrentEXP = Mathf.Clamp(value, 0, ExperienceReqByLVL[LVL]);
 
-                if (Current == Required)
+                if (CurrentEXP == Required)
                 {
                     IncreaseLevel();
-                    _Current = 0;
                 }
 
                 try
                 {
-                    OnExperienceChanged(Required, Current);         // Only player has this assigned
+                    OnExperienceChanged(Required, CurrentEXP);         // Only player has this assigned
                 }
                 catch (Exception e)
                 {
-                    if (Required != -1)                             // AI Characters has -1 by default
+                    if (Required != 999)                             // AI Characters has 999 by default
                         Debug.LogError(e);
                 }
             }
@@ -108,16 +107,25 @@ public class CharacterAttributes : MonoBehaviour
         public void Init()
         {
             Required = ExperienceReqByLVL[LVL];
-            Current = 0;
+            CurrentEXP = 0;
         }
 
         private void IncreaseLevel()
         {
-            LVL++;
+            if (ExperienceReqByLVL.Count > LVL)
+            {
+                LVL++;
 
-            Required = ExperienceReqByLVL[LVL];
+                _CurrentEXP = 0;
 
-            OnLevelIncreased();
+                Required = ExperienceReqByLVL[LVL];
+
+                OnLevelIncreased();
+            }
+            else
+            {
+                Debug.Log("Hit Last Level");
+            }
         }
     }
 }

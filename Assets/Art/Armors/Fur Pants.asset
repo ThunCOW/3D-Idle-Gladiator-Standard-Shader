@@ -21,4 +21,5 @@ MonoBehaviour:
   ModelSprite: {fileID: 0}
   Armour: 10
   StaminaDamageReductionPerc: 0
+  HideBodyPart: 1
   ArmorAudioConfigSO: {fileID: 0}

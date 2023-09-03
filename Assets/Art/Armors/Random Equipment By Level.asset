@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RandomEquipmentByLevelList:
   - LVL: 0
-    Helmet:
-    - {fileID: 11400000, guid: 9a1206c9ec3ea93458610754b35965bf, type: 2}
+    Helmet: []
     Breastplate:
     - {fileID: 11400000, guid: cbb69542bd4dc444e9f9263c802884df, type: 2}
     Shooulders: []
     Gauntlets: []
-    Pants: []
-    Shoes: []
+    Pants:
+    - {fileID: 11400000, guid: 5ebea31cc43e2894e817e440343f19b3, type: 2}
+    Shoes:
+    - {fileID: 11400000, guid: e8e23435438f37c4c901b619bc0e5395, type: 2}
     PrimaryWeapons: []
     SecondaryWeapons: []
   - LVL: 1
@@ -31,7 +32,25 @@ MonoBehaviour:
     - {fileID: 11400000, guid: cbb69542bd4dc444e9f9263c802884df, type: 2}
     Shooulders: []
     Gauntlets: []
-    Pants: []
-    Shoes: []
+    Pants:
+    - {fileID: 11400000, guid: 5ebea31cc43e2894e817e440343f19b3, type: 2}
+    Shoes:
+    - {fileID: 11400000, guid: e8e23435438f37c4c901b619bc0e5395, type: 2}
+    PrimaryWeapons: []
+    SecondaryWeapons: []
+  - LVL: 2
+    Helmet:
+    - {fileID: 11400000, guid: 9a1206c9ec3ea93458610754b35965bf, type: 2}
+    Breastplate:
+    - {fileID: 11400000, guid: cbb69542bd4dc444e9f9263c802884df, type: 2}
+    Shooulders:
+    - {fileID: 11400000, guid: 2712bafa244e91f4b8644a622279dd57, type: 2}
+    Gauntlets:
+    - {fileID: 11400000, guid: c308a998a84e7a145a5378e552131522, type: 2}
+    Pants:
+    - {fileID: 11400000, guid: 5ebea31cc43e2894e817e440343f19b3, type: 2}
+    Shoes:
+    - {fileID: 11400000, guid: a8416069823025349b5ba6da01560f1c, type: 2}
+    - {fileID: 11400000, guid: e8e23435438f37c4c901b619bc0e5395, type: 2}
     PrimaryWeapons: []
     SecondaryWeapons: []

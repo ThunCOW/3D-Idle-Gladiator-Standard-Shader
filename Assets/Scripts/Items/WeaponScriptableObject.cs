@@ -14,6 +14,13 @@ public class WeaponScriptableObject : ItemScriptableObject
 
     protected GameObject weaponColliderSceneRef;
 
+    /// <summary>
+    /// Instantiating equipments in a custom hierarcy
+    /// </summary>
+    /// <param name="Parent">Equipment is going to be be child of the Parent in the scene</param>
+    /// <param name="CharacterManager">Character Manager</param>
+    /// <param name="TargetSkinnedMesh">Since its custom instantiated, Skinned meshes need to retarget to the right bones which is contained in the main body</param>
+    /// <param name="WeaponColliderSpawnParent">Weapons are instantiated as skinned mesh object and part of animation, so weapon collision is calculated by seperate weapon collider objects with no model</param>
     public void Equip(Transform Parent, CharacterManager CharacterManager, SkinnedMeshRenderer TargetSkinnedMesh, Transform WeaponColliderSpawnParent)
     {
         base.Equip(Parent, CharacterManager, TargetSkinnedMesh);

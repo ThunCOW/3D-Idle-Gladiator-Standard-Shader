@@ -30,32 +30,56 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(AttackRoutine(Characters[Gladiator.Player]));
-        StartCoroutine(AttackRoutine(Characters[Gladiator.Enemy]));
+        //StartCoroutine(AttackRoutine(Gladiator.Player));
+        //StartCoroutine(AttackRoutine(Gladiator.Enemy));
+
+        //StartCoroutine(BattleLogic());
     }
 
-    private IEnumerator AttackRoutine(CharacterManager Character)
+    public void StartBattle()
+    {
+        StopAllCoroutines();
+
+        StartCoroutine(BattleLogic(1.5f));
+    }
+
+    private IEnumerator AttackRoutine(Gladiator character)
     {
         yield return new WaitForSeconds(Random.Range(1, 5));
 
-        float wait = Random.Range(Character.Attributes.Speed.GetValue(), Character.Attributes.Speed.GetValue() * 2);
+        float wait = Random.Range(Characters[character].Attributes.Speed.GetValue(), Characters[character].Attributes.Speed.GetValue() * 2);
         while (wait > 0)
         {
-            yield return new WaitUntil(() => !isAttacking);     // if one of the characters is attacking, wait
-
             wait -= Time.deltaTime;
         }
 
-        yield return new WaitUntil(() => !isAttacking);
+        if(isAttacking) yield return new WaitUntil(() => !isAttacking);
 
-        CharacterManager Defender = Character.name.Equals(Characters[Gladiator.Player].name) ? Characters[Gladiator.Enemy] : Characters[Gladiator.Player];
-        Attack(Character, Defender);
+        CharacterManager Defender = Characters[character].name.Equals(Characters[Gladiator.Player].name) ? Characters[Gladiator.Enemy] : Characters[Gladiator.Player];
+        Attack(Characters[character], Defender);
     }
 
+    private IEnumerator BattleLogic(float delay = 0)
+    {
+        if (delay == 0)
+            yield return new WaitForSeconds(Random.Range(0.25f, 0.85f));
+        else
+            yield return new WaitForSeconds(delay);
+
+        float playerAttackChance = Random.Range(0, BattleStatus.Instance.Player.AttackSpeed);
+        float enemyAttackChance = Random.Range(0, BattleStatus.Instance.Enemy.AttackSpeed);
+
+        Gladiator attacker = playerAttackChance > enemyAttackChance ? Gladiator.Player : Gladiator.Enemy;
+        Gladiator defender = attacker == Gladiator.Player ? Gladiator.Enemy : Gladiator.Player;
+
+        Attack(Characters[attacker], Characters[defender]);
+    }
     private void Attack(CharacterManager Attacker, CharacterManager Defender)
     {
         //float HitChance = Mathf.Clamp(Attacker.Attributes.HitBonus + (Attacker.Attributes.Attack.GetValue() - Defender.Attributes.Defense.GetValue()), 10, 90);
-        float HitChance = 50;
+        BattleStatus.BattleStatusInfo battleStatusInfo = Attacker is PlayerCharacterManager ? BattleStatus.Instance.Player : BattleStatus.Instance.Enemy;
+
+        int HitChance = battleStatusInfo.HitChance;
 
         // Success
         if (Random.Range(0, 101) < HitChance)
@@ -94,7 +118,10 @@ public class BattleManager : MonoBehaviour
         !Defender.Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")
         ));
 
-        // Check if died here !
+        if (Defender.Status.Health.CurrentValue < 0)
+        {
+            StopAllCoroutines();
+        }
         //if (Defender.Animator.GetCurrentAnimatorStateInfo(0).IsName())
 
         // Wait until both character goes back to "Idle" state and ready for action
@@ -103,8 +130,9 @@ public class BattleManager : MonoBehaviour
         Defender.Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")
         ));
 
-        StartCoroutine(AttackRoutine(Attacker));
-
         isAttacking = false;
+
+        StartCoroutine(BattleLogic());
+        //StartCoroutine(AttackRoutine(Attacker.GladiatorType));
     }
 }

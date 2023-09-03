@@ -75,6 +75,11 @@ namespace EquipItemEditor
                 EquipAll();
             }
 
+            if (GUILayout.Button("REMOVE ALL", GUILayout.MinWidth(150), GUILayout.MinHeight(30), GUILayout.ExpandWidth(true)))
+            {
+                RemoveAllEquipment();
+            }
+
             serialObj.ApplyModifiedProperties();
 
             GUILayout.Space(20);
@@ -93,6 +98,12 @@ namespace EquipItemEditor
             EquipmentList.Add(PrimaryWeaponPrefab);
             EquipmentList.Add(SecondaryWeaponPrefab);
 
+            // Destroy Already Equipped Items To Prevevnt Stacking in Inventory
+            for (int i = EquipmentParent.childCount - 1; i >= 0; i--)
+            {
+                DestroyImmediate(EquipmentParent.GetChild(i).gameObject);
+            }
+
             if (BodyParts.Parts.Count < EquipmentList.Count)
             {
                 Debug.LogError("Missing Body Parts! Set them in scene.(Character -> EquipmentGO)");
@@ -106,17 +117,27 @@ namespace EquipItemEditor
 
                 GameObject BodyPart = BodyParts.Parts[i];
 
-                GameObject instance = PrefabUtility.InstantiatePrefab(EquipmentList[i]) as GameObject;
+                GameObject prefab_to_clone = PrefabUtility.InstantiatePrefab(EquipmentList[i]) as GameObject;
+                PrefabUtility.UnpackPrefabInstance(prefab_to_clone, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
                 if (BodyPart == null)
                 {
                     Debug.LogError("Body Parts Parent is NOT set!");
                 }
                 else
                 {
-                    SkinnedMeshRenderer instanceSMR = instance.GetComponentInChildren<SkinnedMeshRenderer>();
+                    SkinnedMeshRenderer instanceSMR = prefab_to_clone.GetComponentInChildren<SkinnedMeshRenderer>();
                     SkinnedMeshRenderer TargetSMR = BodyPart.GetComponentInChildren<SkinnedMeshRenderer>();
                     ItemScriptableObject.TransferSkinnedMeshes(instanceSMR, TargetSMR, EquipmentParent);
                 }
+            }
+        }
+
+        private void RemoveAllEquipment()
+        {
+            // Destroy Already Equipped Items To Prevevnt Stacking in Inventory
+            for (int i = EquipmentParent.childCount - 1; i >= 0; i--)
+            {
+                DestroyImmediate(EquipmentParent.GetChild(i).gameObject);
             }
         }
     }

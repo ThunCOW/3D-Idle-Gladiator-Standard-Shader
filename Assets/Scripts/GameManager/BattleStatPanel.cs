@@ -39,12 +39,37 @@ public class BattleStatPanel : MonoBehaviour
 
         characterManager.Status.Fatigue.CurrentValueChanged += PopulateBattleStatInfo;                  // Current Stamina
         characterManager.Status.Fatigue.AttributeChanged += PopulateBattleStatInfo;                     // Max Stamina
+
+        characterManager.EquipmentManager.WeaponChanged += PopulateBattleStatInfo;
+        characterManager.Attributes.Defense.AttributeChanged += PopulateBattleStatInfo;
+        characterManager.Attributes.Attack.AttributeChanged += PopulateBattleStatInfo;
+
+        PopulateBattleStatInfo();
+    }
+
+    public void RemoveEvents(CharacterManager characterManager)
+    {
+        characterManager.Status.Health.CurrentValueChanged -= PopulateBattleStatInfo;                   // Current Health
+        characterManager.Attributes.Vitality.AttributeChanged -= PopulateBattleStatInfo;                // Max Heal-h
+
+        characterManager.Status.Armour.CurrentValueChanged -= PopulateBattleStatInfo;                   // Current Armour
+        characterManager.Status.Armour.AttributeChanged -= PopulateBattleStatInfo;                      // Max Armo-r
+
+        characterManager.Status.Fatigue.CurrentValueChanged -= PopulateBattleStatInfo;                  // Current Stamina
+        characterManager.Status.Fatigue.AttributeChanged -= PopulateBattleStatInfo;                     // Max Stami-a
+
+        characterManager.EquipmentManager.WeaponChanged -= PopulateBattleStatInfo;
+        characterManager.Attributes.Defense.AttributeChanged -= PopulateBattleStatInfo;
+        characterManager.Attributes.Attack.AttributeChanged -= PopulateBattleStatInfo;
     }
 
     private void PopulateBattleStatInfo()
     {
-        PopulateBattleStatInfo(BattleManager.Characters[Gladiator.Player]);
-        //PopulateBattleStatInfo(BattleManager.Characters[Gladiator.Enemy]);
+        if (BattleManager.Characters[Gladiator.Player] != null && BattleManager.Characters[Gladiator.Enemy] != null)
+        {
+            PopulateBattleStatInfo(BattleManager.Characters[Gladiator.Player]);
+            PopulateBattleStatInfo(BattleManager.Characters[Gladiator.Enemy]);
+        }
     }
 
     private void PopulateBattleStatInfo(CharacterManager Character)
@@ -62,10 +87,16 @@ public class BattleStatPanel : MonoBehaviour
         if (Character.EquipmentManager.EquippedItemsDict[EquipmentType.PrimaryWeapon] != null)
         {
             WeaponScriptableObject.WeaponDamage weaponDamage = (Character.EquipmentManager.EquippedItemsDict[EquipmentType.PrimaryWeapon] as WeaponScriptableObject).Damage;
+
             bsi.Damage.text = weaponDamage.MinDamage.GetValue().ToString() + " - " + weaponDamage.MaxDamage.GetValue().ToString();
         }
-        bsi.Hit_Chance.text = Character is PlayerCharacterManager ? BattleStatus.Instance.Player.HitChance.ToString() : BattleStatus.Instance.Enemy.HitChance.ToString();
-        bsi.Attack_Speed.text = Character is PlayerCharacterManager ? (BattleStatus.Instance.Player.AttackSpeed * 100).ToString() + "%" : (BattleStatus.Instance.Enemy.AttackSpeed * 100).ToString() + "%";
+
+        bsi.Hit_Chance.text = Character is PlayerCharacterManager ? 
+                                BattleStatus.Instance.Player.HitChance.ToString() + "%" : 
+                                BattleStatus.Instance.Enemy.HitChance.ToString() + "%";
+        bsi.Attack_Speed.text = Character is PlayerCharacterManager ? 
+                                (BattleStatus.Instance.Player.AttackSpeed * 100).ToString() + "%" : 
+                                (BattleStatus.Instance.Enemy.AttackSpeed * 100).ToString() + "%";
     }
 
     public void Btn_Enable()

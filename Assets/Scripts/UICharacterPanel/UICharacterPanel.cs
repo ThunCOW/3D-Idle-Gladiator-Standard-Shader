@@ -63,7 +63,8 @@ public class UICharacterPanel : MonoBehaviour
     }
 
     [Space]
-    public TMP_Text UnspentPerkP_Text;
+    [SerializeField]
+    private TMP_Text UnspentPerkP_Text;
     [SerializeField]
     private int unspentPerkTotalP;          // Total Unspent Point
     [SerializeField]
@@ -83,8 +84,10 @@ public class UICharacterPanel : MonoBehaviour
     }
 
     [Space]
-    public Button Btn_Confirm;
-    public TMP_Text Btn_Confirm_Text;
+    [SerializeField]
+    private Button Btn_Confirm;
+    [SerializeField]
+    private TMP_Text Btn_Confirm_Text;
 
 
     // Start is called before the first frame update
@@ -122,12 +125,14 @@ public class UICharacterPanel : MonoBehaviour
 
         BattleManager.Characters[Gladiator.Player].Attributes.LVL.OnLevelIncreased += LevelIncreased;
         BattleManager.Characters[Gladiator.Player].Attributes.LVL.OnExperienceChanged += UIUpdateExperience;
+
+        LVL.text = "LVL " + (BattleManager.Characters[Gladiator.Player].Attributes.LVL.LVL + 1).ToString();
     }
 
     private void UIUpdateExperience(int Required, int Current)
     {
         EXP.text = Current + " / " + Required;
-        EXP_BAR.localScale = new Vector3(Current / Required, 1, 1);
+        EXP_BAR.localScale = new Vector3((float)Current / Required, 1, 1);
     }
 
     private void LevelIncreased()
@@ -170,11 +175,16 @@ public class UICharacterPanel : MonoBehaviour
         c.a = Activate ? 1 : 0.3f;
         Btn_Confirm_Text.color = c;
     }
-
+    enum zýrh
+    {
+        Kask,
+        Omuz,
+        Kol,
+    }
     #region ********** Increase / Decrease Attribute Button Logic (UI) **********
     public void AttributeIncrease(AttributeDecisionComponent ATC)
     {
-        UnspentAttP--;
+        UnspentAttP--; 
 
         PrimaryAttributes Attribute = ATC.Attribute;
 
