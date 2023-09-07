@@ -655,7 +655,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6622062119396966259}
-  - component: {fileID: 1314188273}
   m_Layer: 0
   m_Name: Armature
   m_TagString: Untagged
@@ -679,163 +678,6 @@ Transform:
   m_Father: {fileID: 3214980787627550216}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98021, y: 0, z: 0}
---- !u!114 &1314188273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268489436671945038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edbc5a64c8993f448a9659e57b838a24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RemoveRig: 0
-  Bones:
-  - {fileID: 6622062119396966259}
-  - {fileID: 3524037562331370167}
-  - {fileID: 1904731493952642262}
-  - {fileID: 6518899455058447461}
-  - {fileID: 6242769086440833140}
-  - {fileID: 121540544361922386}
-  - {fileID: 496630696123574001}
-  - {fileID: 5855858422758765676}
-  - {fileID: 4175166773764943818}
-  - {fileID: 8144896675099880403}
-  - {fileID: 8070919640139588146}
-  - {fileID: 8590384210457183211}
-  - {fileID: 3916285985393278438}
-  - {fileID: 6719175248067478076}
-  - {fileID: 1872774987876416617}
-  - {fileID: 2398912333394449914}
-  - {fileID: 2694432941846148660}
-  - {fileID: 1919788885888301301}
-  - {fileID: 53408941881735526}
-  - {fileID: 4506709314249894032}
-  - {fileID: 8177011518433547193}
-  - {fileID: 4179281900661527007}
-  - {fileID: 4323726836133107520}
-  - {fileID: 795982688646492290}
-  - {fileID: 2216624256190717879}
-  - {fileID: 5413637970937057842}
-  - {fileID: 4922123248200463888}
-  - {fileID: 5832832014333845856}
-  - {fileID: 5248645180247838419}
-  - {fileID: 8813658491772036653}
-  - {fileID: 1520771420624431554}
-  - {fileID: 2404651466618232514}
-  - {fileID: 8093977168023373455}
-  - {fileID: 4684993348617488670}
-  - {fileID: 5959741217317799777}
-  - {fileID: 5698039962386311608}
-  - {fileID: 747817741979908336}
-  - {fileID: 6065836309106845675}
-  - {fileID: 4704633727450656700}
-  - {fileID: 2521005536449522114}
-  - {fileID: 8405372758989070923}
-  - {fileID: 4206962965339354528}
-  - {fileID: 1951031695108645649}
-  - {fileID: 1003534253908572692}
-  - {fileID: 3899785920080583798}
-  - {fileID: 7176200565665901720}
-  - {fileID: 7379009937973415818}
-  - {fileID: 6474196277019087187}
-  - {fileID: 7901727575015780202}
-  - {fileID: 5203868585817033890}
-  - {fileID: 2999060578762026648}
-  - {fileID: 8641839671694994283}
-  - {fileID: 939339615601865612}
-  - {fileID: 1548251994150536519}
-  - {fileID: 3309573437411302324}
-  - {fileID: 8754678530021359781}
-  - {fileID: 3451500276677422994}
-  - {fileID: 4887908488179401411}
-  - {fileID: 3758971841536548519}
-  - {fileID: 2661987833709959979}
-  - {fileID: 8570910184950592864}
-  - {fileID: 3912070764364136627}
-  - {fileID: 5245249912448536747}
-  - {fileID: 8207919735800649815}
-  - {fileID: 9091094558266185058}
-  - {fileID: 4390223591007149806}
-  - {fileID: 8457586124456121636}
-  - {fileID: 8343645792158421077}
-  - {fileID: 3113084149124444131}
-  - {fileID: 8534721652617378000}
-  Target: {fileID: 0}
-  TargetBones:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  CopyPhysics: 0
 --- !u!1 &1365701919962758377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1886,15 +1728,15 @@ MonoBehaviour:
     - EquipmentType: 4
       TargetSkinnedMeshRenderer: {fileID: 2625909183026745547}
     - EquipmentType: 5
-      TargetSkinnedMeshRenderer: {fileID: 5114384817956164652}
+      TargetSkinnedMeshRenderer: {fileID: 6803200983055497683}
     - EquipmentType: 6
+      TargetSkinnedMeshRenderer: {fileID: 5114384817956164652}
+    - EquipmentType: 7
       TargetSkinnedMeshRenderer: {fileID: 5114384817956164652}
   PrimaryWeaponColliderSpawnParent: {fileID: 5413637970937057842}
   EquippedItemsList: []
   characterManager: {fileID: 0}
   EditorItems:
-  - {fileID: 11400000, guid: 0c0351e1dff48594ca4d7d9044107d42, type: 2}
-  - {fileID: 11400000, guid: e8e23435438f37c4c901b619bc0e5395, type: 2}
   - {fileID: 11400000, guid: 5ebea31cc43e2894e817e440343f19b3, type: 2}
 --- !u!114 &3865008591934965234
 MonoBehaviour:
@@ -2112,7 +1954,7 @@ MonoBehaviour:
   Shoes: {fileID: 5642290171178552395}
   PrimaryWeapon: {fileID: 8360679889567579994}
   SecondaryWeapon: {fileID: 8360679889567579994}
-  Parts:
+  EquipmentParts:
   - {fileID: 7170064388930662802}
   - {fileID: 4161161634729660489}
   - {fileID: 4161161634729660489}
@@ -2121,6 +1963,14 @@ MonoBehaviour:
   - {fileID: 5642290171178552395}
   - {fileID: 8360679889567579994}
   - {fileID: 8360679889567579994}
+  AllBodyPartsList:
+  - {fileID: 7170064388930662802}
+  - {fileID: 4161161634729660489}
+  - {fileID: 5088014432222794256}
+  - {fileID: 7703582305384845234}
+  - {fileID: 8360679889567579994}
+  - {fileID: 5642290171178552395}
+  - {fileID: 8121859142404166079}
 --- !u!1 &3865008592154573722
 GameObject:
   m_ObjectHideFlags: 0

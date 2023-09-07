@@ -80,6 +80,7 @@ public class BattleStatPanel : MonoBehaviour
         else
             bsi = Enemy;
 
+        bsi.LVL.text = (Character.Attributes.LVL.LVL + 1).ToString();
         bsi.Hp.text = ((int)Character.Status.Health.CurrentValue).ToString() + " / " + ((int)Character.Status.Health.GetValue()).ToString();
         bsi.Armour.text = ((int)Character.Status.Armour.CurrentValue).ToString() + " / " + ((int)Character.Status.Armour.GetValue()).ToString();
         bsi.Stamina.text = ((int)Character.Status.Fatigue.CurrentValue).ToString() + " / " + ((int)Character.Status.Fatigue.GetValue()).ToString();

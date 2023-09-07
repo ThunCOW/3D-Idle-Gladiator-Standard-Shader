@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Leather 2 Gloves
   m_EditorClassIdentifier: 
   Name: 
-  ItemWeight: 0
   Type: 3
-  ModelPrefab: {fileID: 7157929619773990931, guid: cac83e7e956c2164bb420f59301dbdc1,
-    type: 3}
+  Weight: 0
+  Value: 0
+  RequiredLevel: 0
+  ModelPrefab: {fileID: 4033559294982733238, guid: cac83e7e956c2164bb420f59301dbdc1, type: 3}
   ModelSprite: {fileID: 0}
   Armour: 10
+  StaminaDamageReductionPerc: 0
+  HideBodyPart: 0
   ArmorAudioConfigSO: {fileID: 0}

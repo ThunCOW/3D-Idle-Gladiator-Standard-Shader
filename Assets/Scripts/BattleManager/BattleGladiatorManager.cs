@@ -15,6 +15,13 @@ public class BattleGladiatorManager : MonoBehaviour
     [Space]
     public CharacterFeaturesScriptableObjects CharacterFeaturesScriptableObjects;
 
+    [Header("********* Temp BS ********")]
+    public ItemScriptableObject MyrdionShortShoes;
+
+    private void Awake()
+    {
+        CharacterFeaturesScriptableObjects.RandomizeCharacter(BattleManager.Characters[Gladiator.Player]);
+    }
     private void Start()
     {
         Instance = this;
@@ -22,6 +29,7 @@ public class BattleGladiatorManager : MonoBehaviour
         RandomEnemyEquipmentSO.Init();
 
         StartCoroutine(SpawnEnemy(0));
+
     }
 
     public void ResetBattle()
@@ -47,9 +55,9 @@ public class BattleGladiatorManager : MonoBehaviour
 
         CharacterManager enemyCharacterManager = enemyTemp.GetComponent<CharacterManager>();
 
-        RandomizeItems(enemyCharacterManager);
-
         CharacterFeaturesScriptableObjects.RandomizeCharacter(enemyCharacterManager);
+
+        RandomizeItems(enemyCharacterManager);
 
         StartCoroutine(SpawnEnemy());
 

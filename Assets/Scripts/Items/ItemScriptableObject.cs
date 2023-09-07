@@ -54,6 +54,8 @@ public class ItemScriptableObject : ScriptableObject, ICloneable
         character = CharacterManager;
 
         modelSceneRef = Instantiate(ModelPrefab);
+        modelSceneRef = modelSceneRef.transform.GetChild(0).gameObject;
+
         SkinnedMeshRenderer skinnedMesh = modelSceneRef.GetComponentInChildren<SkinnedMeshRenderer>();
         if (skinnedMesh != null)
         {
@@ -83,7 +85,7 @@ public class ItemScriptableObject : ScriptableObject, ICloneable
         SkinnedMeshRenderer.transform.SetParent(NewParent);
         SkinnedMeshRenderer.transform.localPosition = Vector3.zero;
 
-        if (!EditorApplication.isPlaying || !Application.isPlaying)
+        if (!Application.isPlaying)
         {
             DestroyImmediate(SkinnedMeshRendererParent);
         }

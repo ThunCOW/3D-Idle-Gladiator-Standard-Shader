@@ -73,7 +73,7 @@ public class CharacterStatus : MonoBehaviour, IDamageable
         characterManager.StatusUI.UpdateHealthUI((int)Health.GetValue(), (int)Health.CurrentValue);
         //characterManager.StatusUI.UpdateArmourUI((int)Armour.GetValue(), (int)Armour.CurrentValue);
 
-        if (Health.CurrentValue == 0 && damageTaken != 0)
+        if (Health.CurrentValue <= 0.9999f && damageTaken != 0)
         {
             OnDeath?.Invoke();
             characterManager.CharacterActionManager.BloodSpawner.RagdollHit();

@@ -104,7 +104,7 @@ namespace EquipItemEditor
                 DestroyImmediate(EquipmentParent.GetChild(i).gameObject);
             }
 
-            if (BodyParts.Parts.Count < EquipmentList.Count)
+            if (BodyParts.EquipmentParts.Count < EquipmentList.Count)
             {
                 Debug.LogError("Missing Body Parts! Set them in scene.(Character -> EquipmentGO)");
                 return;
@@ -115,7 +115,7 @@ namespace EquipItemEditor
                 if (EquipmentList[i] == null)
                     continue;
 
-                GameObject BodyPart = BodyParts.Parts[i];
+                GameObject BodyPart = BodyParts.EquipmentParts[i];
 
                 GameObject prefab_to_clone = PrefabUtility.InstantiatePrefab(EquipmentList[i]) as GameObject;
                 PrefabUtility.UnpackPrefabInstance(prefab_to_clone, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);

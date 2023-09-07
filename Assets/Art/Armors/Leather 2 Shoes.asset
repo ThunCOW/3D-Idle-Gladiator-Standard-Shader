@@ -17,8 +17,9 @@ MonoBehaviour:
   Weight: 0
   Value: 0
   RequiredLevel: 0
-  ModelPrefab: {fileID: 6811825305679143211, guid: a3849cf673c64ce4ab670df327389dfa, type: 3}
+  ModelPrefab: {fileID: 5762568710947900827, guid: a3849cf673c64ce4ab670df327389dfa, type: 3}
   ModelSprite: {fileID: 0}
   Armour: 10
   StaminaDamageReductionPerc: 0
+  HideBodyPart: 0
   ArmorAudioConfigSO: {fileID: 0}

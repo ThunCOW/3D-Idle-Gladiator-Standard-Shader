@@ -61,7 +61,7 @@ namespace CharacterFeature
             #region CharacterColorsDict
             CharacterColorablesDict = new Dictionary<CharacterColorFeatures, List<GameObject>>();
             
-            CharacterColorablesDict.Add(CharacterColorFeatures.BodyColor, characterManager.BodyParts.BodyPartsDict.Values.ToList());
+            CharacterColorablesDict.Add(CharacterColorFeatures.BodyColor, characterManager.BodyParts.AllBodyPartsList);
 
             List<GameObject> tempHairColor = new List<GameObject>();
             tempHairColor.Add(HeadFeaturesDict[CharacterHeadFeatures.Hair]);
@@ -89,11 +89,29 @@ namespace CharacterFeature
             ItemScriptableObject.TransferSkinnedMeshes(SMR, headSMR, BodyFeaturesParent);
         }
 
+        public void UpdateHeadFeatures()
+        {
+            List<GameObject> tempHairColor = new List<GameObject>();
+            tempHairColor.Add(HeadFeaturesDict[CharacterHeadFeatures.Hair]);
+            tempHairColor.Add(HeadFeaturesDict[CharacterHeadFeatures.Beard]);
+            tempHairColor.Add(HeadFeaturesDict[CharacterHeadFeatures.Moustache]);
+            tempHairColor.Add(HeadFeaturesDict[CharacterHeadFeatures.Eyebrow]);
+            tempHairColor.Add(HeadFeaturesDict[CharacterHeadFeatures.EyeLash]);
+            CharacterColorablesDict[CharacterColorFeatures.HairColor] = tempHairColor;
+
+            List<GameObject> tempEyeColor = new List<GameObject>();
+            tempEyeColor.Add(HeadFeaturesDict[CharacterHeadFeatures.Eye]);
+            CharacterColorablesDict[CharacterColorFeatures.EyeColor] = tempEyeColor;
+        }
+
         public void ChangeColor(CharacterColorFeatures CharacterColorFeature, Color NewColor)
         {
             foreach (GameObject go in CharacterColorablesDict[CharacterColorFeature])
             {
-                go.GetComponent<SkinnedMeshRenderer>().material.color = NewColor;
+                if (go != null)
+                {
+                    go.GetComponent<SkinnedMeshRenderer>().material.color = NewColor;
+                }
             }
         }
     }

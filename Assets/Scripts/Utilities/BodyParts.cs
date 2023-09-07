@@ -17,6 +17,7 @@ namespace EquipItemEditor
          * SecondaryWeapon
          * */
 
+        [Header("************ Equipment Parent Parts **********")]
         public GameObject Helmet;
         public GameObject Breatplate;
         public GameObject Shoulder;
@@ -26,21 +27,24 @@ namespace EquipItemEditor
         public GameObject PrimaryWeapon;
         public GameObject SecondaryWeapon;
 
-        [HideInInspector] public List<GameObject> Parts;
+        [HideInInspector] public List<GameObject> EquipmentParts;
 
         public Dictionary<EquipmentType, GameObject> BodyPartsDict;
+        
+        [Header("*********** All Body Parts ************")]
+        public List<GameObject> AllBodyPartsList;
 
         void OnValidate()
         {
-            Parts = new List<GameObject>();
-            Parts.Add(Helmet);
-            Parts.Add(Breatplate);
-            Parts.Add(Shoulder);
-            Parts.Add(Gauntlets);
-            Parts.Add(Pants);
-            Parts.Add(Shoes);
-            Parts.Add(PrimaryWeapon);
-            Parts.Add(SecondaryWeapon);
+            EquipmentParts = new List<GameObject>();
+            EquipmentParts.Add(Helmet);
+            EquipmentParts.Add(Breatplate);
+            EquipmentParts.Add(Shoulder);
+            EquipmentParts.Add(Gauntlets);
+            EquipmentParts.Add(Pants);
+            EquipmentParts.Add(Shoes);
+            EquipmentParts.Add(PrimaryWeapon);
+            EquipmentParts.Add(SecondaryWeapon);
         }
 
         private void Awake()

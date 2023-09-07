@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d069a34d68445c04d90b09ce4cf0f347, type: 3}
+  m_Name: Character Feature Randomizer
+  m_EditorClassIdentifier: 
+  HairPrefabList:
+  - {fileID: 7703427412516182515, guid: a4a21dbf7d1c3184c83794020206b189, type: 3}
+  - {fileID: 243089908667816712, guid: 248e44ffff28c7f419b385bda7761ea3, type: 3}
+  - {fileID: 4352351026805321181, guid: b722b5e6eb4240941abbbe1582cb1235, type: 3}
+  - {fileID: 2192147053218997918, guid: 4d25ecb2b53f37e4e87b44fd30294b0c, type: 3}
+  - {fileID: 888255256519550381, guid: c5236c12b5ba4854b92ef2d65a3e8213, type: 3}
+  - {fileID: 4725606975983912734, guid: 9949f57c73ee6cd4da36547ff981345c, type: 3}
+  - {fileID: 888255256519550381, guid: c5236c12b5ba4854b92ef2d65a3e8213, type: 3}
+  - {fileID: 4725606975983912734, guid: 9949f57c73ee6cd4da36547ff981345c, type: 3}
+  - {fileID: 888255256519550381, guid: c5236c12b5ba4854b92ef2d65a3e8213, type: 3}
+  EyebrowPrefabList:
+  - {fileID: 1481613373236039977, guid: 43960b02a0b9f1a4ead11a1ba0a38025, type: 3}
+  EyeLashesPrefabList:
+  - {fileID: 4895685331073691893, guid: 49c3121cc02d5b141be42f959bdfbf6c, type: 3}
+  EyePrefabList:
+  - {fileID: 3355363165295236032, guid: d59205870c9ce4f47a7f231cb3e1f669, type: 3}
+  MoustachePrefabList:
+  - {fileID: 304720641542092633, guid: b6dfaaf490163fb4fa58dddcbbea8a81, type: 3}
+  - {fileID: 2437061164024886778, guid: f36f937c391c74b4a8a5c01d67ed447c, type: 3}
+  - {fileID: 4250380886230074357, guid: e143d994c2bceff41a27d77b6852056b, type: 3}
+  - {fileID: 2584778631106230233, guid: 97262e9d8edb22a438e5c9f43b92e2dc, type: 3}
+  - {fileID: 1002929896923797758, guid: 0951e1bc5b1f8c34b915403c589aa58f, type: 3}
+  BeardPrefabList:
+  - {fileID: 1385727847053475219, guid: 47eebeeb89f149e4e8a419b1db6775ec, type: 3}
+  - {fileID: 7916765881471973985, guid: 56d94e9f84c11e24a81f4d742e3432a7, type: 3}
+  - {fileID: 2128459470643099410, guid: 6080288f03ec0214d9604d1e6f46117a, type: 3}
+  BodyColorList:
+  - {r: 0.80784315, g: 0.59607846, b: 0.41960785, a: 1}
+  - {r: 0.3019608, g: 0.13725491, b: 0, a: 1}
+  - {r: 0.80784315, g: 0.59607846, b: 0.41960785, a: 1}
+  - {r: 0.34901962, g: 0.19215687, b: 0.18039216, a: 1}
+  - {r: 0.34901962, g: 0.2627451, b: 0.18039216, a: 1}
+  - {r: 0.5019608, g: 0.2784314, b: 0.21568628, a: 1}
+  - {r: 0.5019608, g: 0.37254903, b: 0.21568628, a: 1}
+  - {r: 0.7647059, g: 0.5803922, b: 0.35686275, a: 1}
+  - {r: 0.6313726, g: 0.5019608, b: 0.40784314, a: 1}
+  - {r: 0.43529412, g: 0.3647059, b: 0.3137255, a: 1}
+  - {r: 0.6117647, g: 0.5137255, b: 0.44313726, a: 1}
+  - {r: 0.30980393, g: 0.27450982, b: 0.24705882, a: 1}
+  - {r: 0.14901961, g: 0.12941177, b: 0.11372549, a: 1}
+  - {r: 0.2627451, g: 0.21568628, b: 0.17254902, a: 1}
+  HairColor:
+  - {r: 0.45882353, g: 0.34117648, b: 0.23529412, a: 1}
+  - {r: 0.9412061, g: 0.9716981, b: 0.7104397, a: 1}
+  - {r: 0.24705882, g: 0.14901961, b: 0.05882353, a: 1}
+  - {r: 0.9254902, g: 0.8901961, b: 0.85882354, a: 1}
+  - {r: 0.21960784, g: 0.21176471, b: 0.20392157, a: 1}
+  - {r: 0.21176471, g: 0.3019608, b: 0.22352941, a: 1}
+  - {r: 0.3019608, g: 0.28235295, b: 0.21176471, a: 1}
+  - {r: 0.19607843, g: 0.23137255, b: 0.28235295, a: 1}
+  EyeColor:
+  - {r: 0.45882353, g: 0.34117648, b: 0.23529412, a: 1}
+  - {r: 0.5647059, g: 0.8156863, b: 0.52156866, a: 1}
+  - {r: 0.52156866, g: 0.7882353, b: 0.8156863, a: 1}
+  - {r: 0.38431373, g: 0.7529412, b: 1, a: 1}
+  - {r: 1, g: 0.6784314, b: 0.38431373, a: 1}

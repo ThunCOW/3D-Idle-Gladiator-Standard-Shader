@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 [CreateAssetMenu(fileName = "Random Equipment By Level", menuName = "Item Menu/Random Equipment List By LVL")]
 public class RandomEquipmentByLevelScriptableObject : ScriptableObject
@@ -39,12 +38,24 @@ public class RandomEquipmentByLevelScriptableObject : ScriptableObject
 
         List<ItemScriptableObject> itemList = new List<ItemScriptableObject>();
 
-        RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Helmet, itemList);
-        RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Breatplate, itemList);
-        RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Shoulder, itemList);
-        RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Gauntlets, itemList);
+        // 25% chance to have a hat
+        if (Random.Range(0, 12) < 3)
+            RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Helmet, itemList);
+
+        // 75% chance to have a breastplate
+        if (Random.Range(0, 12) < 9)
+            RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Breatplate, itemList);
+
+        if (Random.Range(0, 12) < 7)
+            RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Shoulder, itemList);
+
+        if (Random.Range(0, 12) < 11)
+            RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Gauntlets, itemList);
+
+        if (Random.Range(0, 12) < 8)
+            RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Shoes, itemList);
+        
         RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Pants, itemList);
-        RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.Shoes, itemList);
         RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.PrimaryWeapon, itemList);
         RandomEquipmentByLevelDict[selectedLVL].GetRandomItem(EquipmentType.SecondaryWeapon, itemList);
 

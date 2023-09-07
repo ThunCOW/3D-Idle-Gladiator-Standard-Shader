@@ -20,16 +20,38 @@ public class ArmorScriptableObject : ItemScriptableObject
     
         if (HideBodyPart)
             character.BodyParts.BodyPartsDict[Type].SetActive(false);
+
+        TempRemoveHair(true);
+        TempMyrdionBootFix(CharacterManager);
     }
     public override void Unequip()
     {
         base.Unequip();
 
-        character.Status.Armour.ChangeBaseStat(Armour);
+        character.Status.Armour.ChangeBaseStat(-Armour);
         character.Status.Armour.CurrentValue = character.Status.Armour.GetValue();
         //character.StatusUI.UpdateArmourUI((int)character.Status.Armour.GetValue(), (int)character.Status.Armour.CurrentValue);
 
         character.BodyParts.BodyPartsDict[Type].SetActive(true);
+
+        TempRemoveHair(false);
+    }
+
+    private void TempRemoveHair(bool toRemove)
+    {
+        // Temporarely done - Remove Hair Func Placed Here
+        if (Type == EquipmentType.Helmet)
+            if (character.CharacterFeatureManager.HeadFeaturesDict.TryGetValue(CharacterFeature.CharacterHeadFeatures.Hair, out GameObject Hair))
+                if (Hair != null) 
+                    Hair.SetActive(!toRemove);
+    }
+
+    private void TempMyrdionBootFix(CharacterManager CharacterManager)
+    {
+        // Temporarely done - shorten the length of the boots from legs to ankle
+        if (Type == EquipmentType.Shoes)
+            if (Name == "Myrdion Shoes" && CharacterManager.EquipmentManager.EquippedItemsDict[EquipmentType.Pants].Name != "Myrdion Pants")
+                CharacterManager.EquipmentManager.EquipItem(BattleGladiatorManager.Instance.MyrdionShortShoes.Clone() as ItemScriptableObject);
     }
 
     public override string GetDescriptionComparison(ItemScriptableObject EquippedItem)

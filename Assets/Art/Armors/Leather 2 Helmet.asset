@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Leather 2 Helmet
   m_EditorClassIdentifier: 
   Name: 
-  ItemWeight: 0
   Type: 0
-  ModelPrefab: {fileID: 3811473701728591911, guid: 39d31b2d7feaea94f9cd95fc61357b70,
-    type: 3}
+  Weight: 0
+  Value: 0
+  RequiredLevel: 0
+  ModelPrefab: {fileID: 35509287299227581, guid: 39d31b2d7feaea94f9cd95fc61357b70, type: 3}
   ModelSprite: {fileID: 0}
   Armour: 10
+  StaminaDamageReductionPerc: 0
+  HideBodyPart: 0
   ArmorAudioConfigSO: {fileID: 0}

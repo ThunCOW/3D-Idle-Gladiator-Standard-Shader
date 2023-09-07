@@ -122,7 +122,7 @@ namespace PostProcessingOutline
                 PlayerCharacterManager.PlayerGold -= selectedItem.ShopItem.Value;
             }
 
-            BattleManager.Characters[Gladiator.Player].EquipmentManager.EquipItem(selectedItem.ShopItem);
+            BattleManager.Characters[Gladiator.Player].EquipmentManager.EquipItem(selectedItem.ShopItem.Clone() as ItemScriptableObject);
         }
     }
 }

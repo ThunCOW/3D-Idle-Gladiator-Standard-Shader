@@ -13,17 +13,20 @@ public class RenderTextureEditorOnly : MonoBehaviour
 
     void Update()
     {
-        if (uiCamera == null)
-            uiCamera = GetComponent<Camera>();
-
-        if (RenderTexturePrefab == null)
+        if (!Application.isPlaying)
         {
-            Debug.LogError("Set Render Texture Prefab!");
-            return;
-        }
+            if (uiCamera == null)
+                uiCamera = GetComponent<Camera>();
 
-        if (uiCamera.targetTexture != RenderTexturePrefab)
-            uiCamera.targetTexture = RenderTexturePrefab;
+            if (RenderTexturePrefab == null)
+            {
+                Debug.LogError("Set Render Texture Prefab!");
+                return;
+            }
+
+            if (uiCamera.targetTexture != RenderTexturePrefab)
+                uiCamera.targetTexture = RenderTexturePrefab;
+        }
     }
 }
 #endif

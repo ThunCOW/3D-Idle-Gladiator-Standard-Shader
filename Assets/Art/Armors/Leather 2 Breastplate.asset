@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Leather 2 Breastplate
   m_EditorClassIdentifier: 
   Name: 
-  ItemWeight: 0
   Type: 1
-  ModelPrefab: {fileID: 3214406520703899516, guid: c5724190714adb846b0e4fc81a0f0bdc,
-    type: 3}
+  Weight: 0
+  Value: 0
+  RequiredLevel: 0
+  ModelPrefab: {fileID: 2137186137039900553, guid: c5724190714adb846b0e4fc81a0f0bdc, type: 3}
   ModelSprite: {fileID: 0}
   Armour: 10
+  StaminaDamageReductionPerc: 0
+  HideBodyPart: 0
   ArmorAudioConfigSO: {fileID: 0}

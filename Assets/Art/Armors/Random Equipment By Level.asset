@@ -23,7 +23,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5ebea31cc43e2894e817e440343f19b3, type: 2}
     Shoes:
     - {fileID: 11400000, guid: e8e23435438f37c4c901b619bc0e5395, type: 2}
-    PrimaryWeapons: []
+    PrimaryWeapons:
+    - {fileID: 11400000, guid: 0c0351e1dff48594ca4d7d9044107d42, type: 2}
     SecondaryWeapons: []
   - LVL: 1
     Helmet:
@@ -36,7 +37,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5ebea31cc43e2894e817e440343f19b3, type: 2}
     Shoes:
     - {fileID: 11400000, guid: e8e23435438f37c4c901b619bc0e5395, type: 2}
-    PrimaryWeapons: []
+    PrimaryWeapons:
+    - {fileID: 11400000, guid: 0c0351e1dff48594ca4d7d9044107d42, type: 2}
     SecondaryWeapons: []
   - LVL: 2
     Helmet:
@@ -52,5 +54,6 @@ MonoBehaviour:
     Shoes:
     - {fileID: 11400000, guid: a8416069823025349b5ba6da01560f1c, type: 2}
     - {fileID: 11400000, guid: e8e23435438f37c4c901b619bc0e5395, type: 2}
-    PrimaryWeapons: []
+    PrimaryWeapons:
+    - {fileID: 11400000, guid: 0c0351e1dff48594ca4d7d9044107d42, type: 2}
     SecondaryWeapons: []

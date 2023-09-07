@@ -112,7 +112,7 @@ public class CharacterAttributes : MonoBehaviour
 
         private void IncreaseLevel()
         {
-            if (ExperienceReqByLVL.Count > LVL)
+            if (ExperienceReqByLVL.Count > LVL + 1)
             {
                 LVL++;
 
